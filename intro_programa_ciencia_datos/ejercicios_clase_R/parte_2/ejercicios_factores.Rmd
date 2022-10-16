@@ -1,0 +1,107 @@
+---
+title: "R Notebook"
+output: html_notebook
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+## Introducción a R
+
+# 1. Factors
+
+-   Dado x = c(1, 2, 3, 3, 5, 3, 2, 4, NA), ¿cuáles son los levels de
+    factor(x)?
+
+```{r}
+x = c(1, 2, 3, 3, 5, 3, 2, 4, NA)
+f_x <- factor(x)
+
+#La respuesta es la a: a)	1, 2, 3, 4, 5
+```
+
+-   Dado x \<- c(11, 22, 47, 47, 11, 47, 11) y la ejecución de la
+    sentencia factor(x, levels=c(11, 22, 47), ordered=TRUE) ¿cuál es el
+    cuarto elemento de la salida?
+
+```{r}
+x <- c(11, 22, 47, 47, 11, 47, 11)
+factor(x, levels=c(11, 22, 47), ordered=TRUE)
+
+#La respuesta es la b: 22
+```
+
+* Para el factor z \<- c("p", "a" , "g", "t", "b"), reemplaza el tercer
+elemento de z por "b"
+
+```{r}
+z <- c("p", "a" , "g", "t", "b")
+z<-factor(z)
+z[3]<-"b"
+
+#La respuesta es la c: z[3]<-"b"
+```
+
+* Dado z \<- factor(c("p", "q", "p", "r", "q")) escribe una expresión de R
+que cambie el level "p" a "w"
+
+```{r}
+z <- factor(c("p", "q", "p", "r", "q"))
+levels(z) <- c('w','q','r')
+#ó
+levels(z)[levels(z=='p')] <- 'w'
+```
+
+* Considera el factor result \<- factor(c("Positivo", "Positivo",
+"Muy_positivo", "Negativo", "Positivo")), with the following output: Sin
+embargo una vez realizadas nuevas medidas para el experimento nos damos
+cuenta que puede existir el nivel "Muy_negativo". Modifica el factor de
+manera que levels incluya "Muy_negativo". Además ordena los niveles de
+forma creciente en negatividad. La salida debe ser:
+
+```{r}
+result <- factor(c("Positivo", "Positivo", "Muy_positivo", "Negativo", "Positivo"))
+levels(result) <- c(levels(result),"Muy_negativo")
+
+  #para ordenarlos
+levels(result) <- factor(c("Muy_positivo","Positivo","Negativo","Muy_negativo"), ordered=TRUE)
+```
+
+* Usa el dataset "iris" escribe la expresión necesaria para convertir la
+variable "Sepal.Length" en cinco niveles (levels) . Pista (mira la
+función table() y la función cut().
+
+```{r}
+table(cut(iris$Sepal.Length, breaks = 5))
+```
+
+
+escribe la expresión necesaria para generar una tabla de frecuencias con dos filas y tres columnas. Las filas deben referirse a si la variable “Sepal.length” es menor que 5 y las columnas a las diferentes especies. El resultado debe ser:
+```{r}
+menor_cinco <- table(iris[iris$Sepal.Length < 5, "Species"])
+mayor_cinco <- table(iris[iris$Sepal.Length >= 5, "Species"])
+
+tabla <- rbind(menor_cinco, mayor_cinco)
+tabla
+```
+
+
+
+* Dado el factor:
+x \<- factor(c("high","low","medium","high","high","low","medium"))
+escribe la expresión en R que permita dar valores numéricos únicos para
+los distintos niveles (levels) de x según el siguiente esquema:
+
+level high =\> value 1 level low =\> value 2 level medium =\> value 3
+
+```{r}
+x <- factor(c("high","low","medium","high","high","low","medium"))
+x
+
+unique(x)
+
+niveles<- 1:length(unique(x))
+x_valor_num<- x
+levels(x_valor_num)<- niveles
+x_valor_num
+```

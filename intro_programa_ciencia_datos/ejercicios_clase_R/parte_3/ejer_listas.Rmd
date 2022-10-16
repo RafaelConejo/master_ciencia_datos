@@ -1,0 +1,143 @@
+---
+title: "ejer_listas"
+output: html_document
+date: "2022-09-29"
+---
+
+## Introducción a R
+
+#   1.	Lists
+*Las listas son colecciones de objetos que pueden tener modos diferentes (e.g. numéricos, vectores, arrays..)
+
+Ejemplo de cómo crear una lista
+```{r}
+my_list<- list(name="Fred", wife="Mary", no.children=3, child.ages=c(4,7,9))
+
+attributes(my_list)
+```
+
+
+
+•	Imprime los atributos y los nombres de todos los componentes de la lista
+```{r}
+attributes(my_list)
+names(my_list)
+```
+•	Devuelve el Segundo componente de la lista. El operador [[..]] devuelve el objeto almacenano en ese componente.
+```{r}
+my_list[[2]]
+```
+•	¿Que pasa si usamos '[..]'? 
+```{r}
+#Produce error no encontrado
+#my_list[..]
+```
+•	Llama al componente_list[[2]] por su nombre
+```{r}
+my_list$wife
+```
+
+•	Recupera el Segundo element del cuarto componente de la lista 
+```{r}
+#Primero se accede al componente luego al elemento
+my_list[[4]][2]
+```
+•	Imprime la longitud, del cuarto elemento de la lista.
+```{r}
+length(my_list[[4]])
+```
+•	Reemplaza su contenido por un vector de 12 numeros del 1 al 12
+```{r}
+my_list[[4]]<- c(1:12)
+my_list[[4]]
+```
+•	Elimina el componente wife
+```{r}
+my_list$wife<- NULL
+my_list
+```
+•	Añade un element mas a la lista.
+```{r}
+my_list<- c(my_list, list(new_elemento=c("Rojo", "Azul", "Verde")))
+my_list
+```
+•	Useful commands to convert lists into other objects, such as vectors, data frames or matrices.
+```{r}
+#Devuelve un vector los valores de todos los elementos de la lista
+unlist(my_list)
+```
+```{r}
+#crea un dataframe con los valores de los elementos de la lista
+data.frame(unlist(my_list))
+
+```
+```{r}
+#crea una matriz con los valores de los elementos de la lista
+matrix(unlist(my_list))
+```
+
+
+
+
+
+
+
+
+
+
+#   2.	table()
+
+Vamos a trabajar con el dataset iris. La función  table() cuenta el numero de elementos repetidos en un vector. Es la función más básica de clustering.
+
+Cuenta el numero de entradas idénticas en la variable Sepal.Length del dataset iris. 
+```{r}
+#muestra cada valor y las veces repetidas
+table(iris$Sepal.Length)
+```
+
+
+
+
+#   3.	Como ordenar datos, hacer selecciones con if, calcular condicionales totales, transponer columnas y filas
+
+
+Vamos a volver a utilizar el datasets mtcars.
+
+• Ordena este data set de forma ascendente según su valo de hp. PISTA: with()
+```{r}
+mtcars[order(mtcars$hp) ,]
+```
+•	Hazlo ahora de forma descendente
+```{r}
+mtcars[order(mtcars$hp, decreasing = T) ,]
+```
+•	Calcula la media de la columna mpg. 
+```{r}
+mean(mtcars$mpg)
+```
+•	Calcula la media de mpg para aquellos datos cuyo valor de hp sea menor que 150 y por separado para aquellos cuyo valor de hp sea mayor o igual a 150
+```{r}
+mean(subset(mtcars, hp<150)$mpg)
+mean(subset(mtcars, hp>=150)$mpg)
+```
+•	Busca los valores únicos de la columna cyl de mtcars. PISTA unique()
+```{r}
+unique(mtcars$cyl)
+```
+•	Obten los datos de mpg cyl disp hp para “Toyota Corolla"
+```{r}
+mtcars["Toyota Corolla", c('mpg', 'cyl', 'disp', 'hp')]
+```
+•	Crea una nueva variable mpgClass de tipo categórico cuyo valor es “Low“ si el valor de mpg es menor que la media de la columna mpg y “High” si es mayor que la media de mpg. PISTA ifelse(). Combina ese comando con with() para añadir la nueva variable a mtcars
+```{r}
+mpgClass<- ifelse(mtcars$mpg < mean(mtcars$mpg), 'Low', 'High')
+#utilizo cbind porque quieor añadirlo en nuevas columnas
+new_data<- with(mtcars, cbind(mtcars, mpgClass))
+
+#with permite evaluar una condicion y modificar la data sin modificar el original
+```
+•	¿qué pasa cuando ejecutas este comando? 
+```{r}
+####################################################
+```
+

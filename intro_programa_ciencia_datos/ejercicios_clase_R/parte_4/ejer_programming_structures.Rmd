@@ -1,0 +1,85 @@
+---
+title: "ejer_programming_structures"
+output: html_document
+date: "2022-10-07"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Programming Structures
+
+1.Create an increasing function that indicates whether the elements of a given array are strictly increasing. Ordering the vector is not allowed.
+```{r}
+increasing<- function(arr){
+  crece<- T
+  final<- length(arr)-1 
+  i<- 1 
+  
+  while (crece & i <= final) {
+    if(arr[i] > arr[i+1]){
+      crece<- F
+    }
+    i<- i+1
+  }
+  crece
+}
+
+caso1<- c(1:5)
+caso2<- c(1,2,5,3)
+increasing(caso1)
+increasing(caso2)
+```
+2.Create a function "montecarlo" that calculates the estimation of the given integral. Check functions runif() and rnorm().
+```{r}
+montecarlo<- function(x){
+#AYUDAAAAAAAAAAAAAAAAAA  
+}
+```
+
+3.Create a list of five numeric arrays and order them after its creation.
+```{r}
+array1<- c(2,1,3)
+array2<- c(5,1,2)
+array3<- c(1,2,6,4)
+array4<- c(7,1)
+array5<- c(3,1,5)
+my_list<- list(array1,array2,array3,array4,array5)
+
+for(i in 1:length(my_list)){
+  my_list[[i]]<- sort(my_list[[i]])
+}
+  my_list
+```
+Otra forma usando lapply
+```{r}
+my_list<- list(array1,array2,array3,array4,array5)
+my_list<- lapply(my_list, sort)
+my_list
+```
+
+4.Calculate the minimum value of each column of a matrix, but assume odd numbers are negative and even numbers are positive.
+```{r}
+negativeodd<- function(m){
+  ifelse(m%%2 == 0, m, -m)
+}
+
+my_m<- matrix(c(1,2,3,4,5,7,8,4,22,5,11,22,33,44,53), ncol = 3, byrow = T)
+my_m<- negativeodd(my_m)
+my_m
+
+#calculo los menores valores para cada col
+min_col<- apply(my_m, 2, min)
+min_col
+```
+5.Given a matrix return a list of all values greater than 7 of each row.
+```{r}
+mayor_7<- function(x){
+  x[which(x>7)]
+}
+
+my_m<- matrix(c(1,2,3,4,5,7,8,4,22,5,11,22,33,44,53), ncol = 3, byrow = T)
+greater_seven<- apply(my_m, 1, mayor_7)
+greater_seven
+```

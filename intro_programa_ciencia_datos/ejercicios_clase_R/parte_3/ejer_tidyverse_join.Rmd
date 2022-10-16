@@ -1,0 +1,42 @@
+---
+title: "ejer_tidyverse_join"
+output: html_document
+date: "2022-10-07"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introducción a R
+
+#1.	Join
+Trabajaremos con starwars
+```{r}
+
+```
+
+•	Quédate solo con name, hoeworld y species
+```{r}
+
+```
+•	Crea un subsets para poder usar las funciones de join. Este subset será solo un 20% de las filas totales y tiene que contener las siguientes variables; name, height:eye_color, species. Tip: sample_frac()
+```{r}
+
+```
+•	Haz un left_join() por nombre y especie de ambos datasets. Por defecto los métodos utilizan todas las variables comunes. Pero es posible modificar este comportamiento.
+```{r}
+
+```
+•	Utiliza solo la variable nombre para unir los sets
+```{r}
+
+```
+•	Extrae las filas comunes a ambos datasets. Tip: %>% left_join %>%semi_join()
+```{r}
+
+```
+•	¿Como encontrarias las filas que no están en ambos datasets?
+```{r}
+
+```

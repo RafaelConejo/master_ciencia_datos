@@ -1,0 +1,27 @@
+---
+title: "apuntes"
+output: html_document
+date: "2022-09-28"
+---
+
+#No se puede usar R como si fuera c++ pues los ciclos no gustan
+
+# Apuntes sacados de Strings.r en prado
+#Paste sirve para concatenar strings
+```{r}
+paste("Ciencia", "de", "Datos")
+```
+
+#Si pongo el nombre de la funcion solo me da info sobre la funcion
+```{r}
+paste
+```
+
+#Para mostrar la ayuda de R
+```{r}
+?paste
+```
+
+#Mirar archivo de expresionesR
+#destaca [^ab] y más
+#[:alnum:] y los de abajo son de R y muy utiles

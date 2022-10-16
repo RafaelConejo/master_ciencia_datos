@@ -1,0 +1,167 @@
+---
+title: "ejer_dataframes"
+output: html_document
+date: "2022-09-29"
+---
+
+## Introducción a R
+
+# 1.	Manipulación de dataframes
+La sintaxis general para acceder a un data frame es 
+my_frame[rows, columns] 
+
+* Vamos a trabajar con un ejemplo que viene por defecto en la instalación de R USArrests. Este data frame contiene la información para cada estado Americano de las tasas de criminales (por 100.000 habitantes). Los datos de las columnas se refieren a Asesinatos, violaciones y porcentaje de la población que vive en áreas urbanas. Los datos son de 1973. Contesta a las siguientes preguntas sobre los datos
+
+- Las dimensiones del dataframe 
+```{r}
+dim(USArrests)
+```
+
+- La longitud del dataframe (filas o columnas) 
+```{r}
+nrow(USArrests)
+```
+- Número de columnas 
+```{r}
+ncol(USArrests)
+```
+- ¿Cómo calcularías el número de filas? 
+```{r}
+nrow(USArrests)
+```
+- Obtén el nombre de las filas y las columnas para este data frame 
+```{r}
+rownames(USArrests)
+colnames(USArrests)
+```
+- Visualiza las seis primeras filas 
+```{r}
+USArrests[1:6,]
+```
+- Muestra por pantalla la columna con los datos de asesinato 
+```{r}
+USArrests$Murder
+#o  USArrests[,"Murder"]
+```
+- Muestra las tasas de asesinato para el segundo, tercer y cuarto estado  
+```{r}
+USArrests$Murder[2:4]
+#ó  USArrests[2:4, "Murder"]
+```
+- Muestra las primeras cinco filas de todas las columnas 
+```{r}
+USArrests[1:5,]
+```
+- Muestra todas las filas para las dos primeras columnas 
+```{r}
+USArrests[,1:2]
+```
+- Muestra todas las filas de las columnas 1 y 3 
+```{r}
+USArrests[,c(1,3)]
+```
+- Muestra solo las primeras cinco filas de las columnas 1 y 2 
+```{r}
+USArrests[1:5,1:2]
+```
+- Extrae las filas para el índice Murder 
+```{r}
+USArrests[,"Murder"]
+```
+
+
+Vamos con expresiones un poco más complicadas:
+
+-	¿Qué estado tiene la menor tasa de asesinatos? ¿qué línea contiene esa información?, obtén esa información 
+```{r}
+USArrests[which.min(USArrests[,"Murder"]), ]
+
+#Para saber la línea que lo contiene
+which.min(USArrests[,"Murder"])
+```
+-	¿Qué estados tienen una tasa inferior al 4%?, obtén esa información 
+```{r}
+x<- USArrests[which(USArrests[,"Murder"] < 4), ]
+
+#Para obtener los nombres de los estados
+rownames(x)
+```
+-	¿Qué estados estan en el cuartil superior (75) en lo que a población en zonas urbanas se refiere?  
+```{r}
+x<- USArrests[which(USArrests[,"UrbanPop"] >= 75), ]
+x
+
+rownames(x)
+```
+-	Ordena de forma decreciente las filas del DF según el porcentaje de población en el área urbana. Para ello investiga la función order() y sus parámetros. 
+```{r}
+orden<- USArrests[order(USArrests[,"UrbanPop"], decreasing = T), ]
+orden
+```
+
+
+
+
+
+
+
+
+##    2.	Dataframe 2
+* Vamos a trabajar con otro dataframe. Descarga el fichero student.txt de la plataforma PRADO. Importa la información usando RStudio con su opción de importar. Almacena la información en una variable llamada “students”. Ten en cuenta que los datos son tab-delimited y tienen un texto para cada columna. Comprueba que R ha leído correctamente el fichero imprimiendo el objeto en la pantalla
+```{r}
+data<- read.table("student.txt", header = TRUE)
+```
+
+- Imprime solo los nombres de la columnas 
+```{r}
+colnames(data)
+```
+- Llama a la columna height solo 
+```{r}
+data$height
+#o data[, "height"]
+```
+- ¿Cuantas observaciones hay en cada grupo?. Utiliza la función table().  Este commando se puede utilizar para crear tablas cruzadas (cross-tabulations) 
+```{r}
+table(data)
+#se crean 4 tablas en las que se compara el tamaño del pie con la altura.
+# se consideran el sexo y la población, primero se comparan mujeres de kuopio, luego hombres de kuopio, seguido por mujeres de tampere y acabando con hombres de tampere
+```
+- Crea nuevas variables a partir de los datos que tenemos. Vamos a crear una variable nueva “sym” que contenga M si el genero es masculino y F si el genero es femenino. Busca en la ayuda información sobre la función ifelse().  
+```{r}
+data$sym<- ifelse(data$gender=='male', 'M', 'F')
+```
+- Crea una segunda variable “colours” cuyo valor será “Blue” si el estudiante es de kuopio y “Red” si es de otro sitio. 
+```{r}
+data$colours<- ifelse(data$population=='kuopio', 'Blue', 'Red')
+```
+- Con los datos anteriores de height y shoesize y las nuevas variables crea un nuevo data.frame que se llame students.new 
+```{r}
+students.new <- data.frame(data$height, data$shoesize, data$gender, data$population, data$sym, data$colours)
+```
+- Comprueba que la clase de student.new es un dataframe 
+```{r}
+class(students.new)
+#Lo es
+```
+- Crea dos subsets a partir del dataset student. Dividelo dependiendo del sexo. Para ello primero comprueba que estudiantes son hombres (male). Pista: busca información sobre la función which(). 
+```{r}
+which(students.new$data.gender == 'male')
+
+which(students.new$data.gender == 'female')
+```
+- Basándote en esa selección dada por which() toma solo esas filas del dataset student para generar el subset student.male 
+```{r}
+male<- data.frame(students.new[which(students.new$data.gender=='male'),])
+male
+```
+- Repite el procedimiento para seleccionar las estudiantes mujeres (females) 
+```{r}
+female<- data.frame(students.new[which(students.new$data.gender=='female'),])
+female
+```
+- Utiliza la function write.table() para guarder el contenido de student.new en un archivo. 
+```{r}
+write.table(students.new, "student_new.txt")
+```
+

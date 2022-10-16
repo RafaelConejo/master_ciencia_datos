@@ -1,0 +1,69 @@
+---
+title: "ejer_DF_tidyverse"
+output: html_document
+date: "2022-10-07"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introducción a R
+
+#1.	Manipulación de dataframes
+Vamos a trabajar con el dataframe flights de la libreria (nycflights13). Inspecciona el dataframe y familiarízate con las variables
+```{r}
+library(nycflights13)
+flights
+```
+
+•	Busca todos los vuelos del 1 de enero
+```{r}
+flights %>% filter(month == "1" & day == "1")
+```
+•	Busca los vuelos que están solo operados o por American Airlines (AA) o por United Airlines (UA)
+```{r}
+flights %>% filter(carrier == "AA" | carrier == "UA")
+```
+•	Crea un nuevo dataframe con las variables vuelo, hora de salida, hora de llegada y número de vuelo.
+```{r}
+new_flights<- flights %>% select(dep_time, arr_time, flight)
+new_flights
+```
+•	Selecciona la variable vuelo y aquellas que contengan la palabra” delay”
+```{r}
+#Toma la variable vuelo que entiendo que es la que contiene el numero del vuelo 
+flights %>% select(flight, contains("delay"))
+```
+•	Crea una tabla para aquellos vuelos con un retraso superior a una hora (60 minutos) ordenados de forma decreciente. La tabla debe tener solo dos variables Unique carrier y el retraso de salida.
+```{r}
+tabla<- flights %>% select(carrier, dep_delay) %>%
+  arrange(desc(dep_delay)) %>%
+  filter(dep_delay > 60)
+
+tabla
+```
+•	Crea una nueva variable que se llame mph y que se calcula como la distancia/tiempo en el aire * 60  
+```{r}
+flights_new<- flights %>% mutate(mph = distance/air_time * 60)
+flights_new
+#flights_new$mph
+```
+•	Crea una nueva tabla organizada por destino. Para cada destino debe indicar la media de los retrasos en la llegada
+```{r}
+tabla_2<- flights %>% group_by(dest) %>%
+  summarise(arr_delay = mean(arr_delay, na.rm = T))
+tabla_2
+```
+•	Calcula para cada compañía el mínimo y el máximo de sus retrasos en salidas y llegadas. Ayuda: usa las funciones adicionales como contains_.
+```{r}
+flights %>% group_by(carrier) %>%
+  summarise_at(vars(dep_delay,arr_delay), list(min = min, max = max), na.rm = T)
+``` 
+•	Para cada compañía calcula que dos días del año fueron los que tuvieron más retraso. Ten en cuenta que el valor más pequeño es el primero por defecto, así que tendrás que usar “desc()” para poder hacer el ranking
+```{r}
+flights %>% group_by(carrier) %>%
+  arrange(desc(dep_delay)) %>%
+  filter(head())
+``` 
+

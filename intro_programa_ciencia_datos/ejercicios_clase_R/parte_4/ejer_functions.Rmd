@@ -1,0 +1,74 @@
+---
+title: "ejer_functions"
+output: html_document
+date: "2022-10-07"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Functions
+
+1.Create a function "impares" that given an array returns the number of odd elements it contains.
+```{r}
+impares <- function(array) {
+    length(which(array%%2 != 0))
+}
+
+impares(1:5)
+```
+2.Create a function "cambio" that, given a matrix of integer numbers, returns a new matrix with all NA replaced by 0.
+```{r}
+cambio<- function(m) {
+  m[which(is.na(m))] <-0
+  m
+}
+
+m<- matrix(c(NA,3, 4,NA), nrow = 2, ncol = 2)
+cambio(m)
+```
+
+3.Create a function "unir" that given two arrays returns a new array with the elements of both arrays without repetition (in the same order as in the original arrays).
+```{r}
+unir<- function(arr1, arr2) {
+  union(arr1, arr2)
+}
+
+array1<- c(1,5,7,8)
+array2<- c(7,8,2,9)
+unir(array1, array2)
+```
+
+4.Create a function "vyc" that given a string returns a list of two components, one containing the vowels and the other the consonants (in alphabetical order and lowercase).
+```{r}
+vyc<- function(s){
+  vowels<- c('a', 'e', 'i', 'o', 'u')
+  
+  s_split<- unlist(strsplit(s, ""))
+  vocales<- s_split[s_split %in% vowels]
+  consonantes<- s_split[!s_split %in% vowels]
+  
+  list(sort(vocales), sort(consonantes))
+  
+}
+
+ejemplo<- "lechuga"
+vyc(ejemplo)
+```
+
+5.Create a function "subpos" that given an array v and two values x and y (with y an optional parameter), returns a new array with the values included after the first x (if x is not there, start from the beggining) upto the first y after the first x (if y is not there, finish upto the end of the array). If y is not indicated, the function will return the values after the first x until the end of the array.
+
+```{r}
+subpos<- function(v, x, y=NA){
+  ini_pos<- match(x, v, nomatch = 1)
+  fin_pos<- match(y, v, nomatch = length(v))
+  
+  new_v<- v[ini_pos:fin_pos]
+  new_v
+}
+
+subpos(1:4, 8, 3)
+subpos(1:4, 2, 8)
+subpos(1:4, 2)
+```
