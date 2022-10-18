@@ -13,24 +13,27 @@ knitr::opts_chunk$set(echo = TRUE)
 #1.	Join
 Trabajaremos con starwars
 ```{r}
-
+library("tidyverse")
+library(gapminder)
+starwars
 ```
 
 •	Quédate solo con name, hoeworld y species
 ```{r}
-
+starwars %>% select(name, homeworld, species)
 ```
 •	Crea un subsets para poder usar las funciones de join. Este subset será solo un 20% de las filas totales y tiene que contener las siguientes variables; name, height:eye_color, species. Tip: sample_frac()
 ```{r}
-
+new_starwars <- starwars %>%  sample_frac(size = 0.2) %>%
+  select(name, height, eye_color, species)
 ```
 •	Haz un left_join() por nombre y especie de ambos datasets. Por defecto los métodos utilizan todas las variables comunes. Pero es posible modificar este comportamiento.
 ```{r}
-
+left_join(starwars, new_starwars, by = c("name","species"))
 ```
 •	Utiliza solo la variable nombre para unir los sets
 ```{r}
-
+full_join(starwars, new_starwars, by = "name")
 ```
 •	Extrae las filas comunes a ambos datasets. Tip: %>% left_join %>%semi_join()
 ```{r}
