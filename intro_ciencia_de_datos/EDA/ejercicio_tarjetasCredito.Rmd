@@ -1,0 +1,158 @@
+---
+title: "ejercicio_tarjetasCredito"
+output: html_document
+date: "2022-10-11"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Credit Cards
+Importa de Prado el fichero “CreditCardClient” en tu Rstudio
+```{r}
+library(tidyverse)
+creditCard<- read.csv("Credit_Card_Clients.csv")
+```
+
+• Comprueba los nombres de las variables
+```{r}
+str(creditCard)
+```
+• Si no se han importado en la primera fila, arréglalo
+```{r}
+creditCard<- read.csv("Credit_Card_Clients.csv", skip = 1)
+```
+• Comprueba que las variables tienen nombres aceptados por R
+```{r}
+#cambio el nomnre de la ultima variable pues tiene espacios 
+creditCard <- creditCard %>% rename(default_payment = default.payment.next.month)
+```
+• Calcula las dimensiones del dataset
+```{r}
+dim(creditCard)
+```
+• Comprueba si hay valores perdidos (missing values)
+```{r}
+indx<- apply(creditCard, 2, function(x) any(is.na(x)))
+#no hay ningun valor NA
+creditCard[indx]
+
+library(Amelia)
+#amelia(creditCard)
+#usar un missing mapara verlo mejor
+```
+• Comprueba si los tipos se han importado correctamente.
+```{r}
+str(creditCard)
+```
+• Haz numéricas todas las variables
+```{r}
+creditCard <- creditCard %>% mutate_if(is.character, as.numeric)
+
+```
+• Haz el summary() de los datos. De aquí deberías sacar que variables son continuas y
+cuales categóricas en el dataset. Indícalas.
+```{r}
+#se observan que se repiten los mismo valores claves eso quiere decir que es una variable categoricas categorizadas como numericas
+summary(creditCard)
+```
+• Fíjate en la variable Education. ¿es una variable numérica o categórica?.
+¿Como lo compruebo?.
+```{r}
+library(ggplot2)
+table(creditCard$EDUCATION)
+#al hacer la tabla de los valores se observa que es una variable categorica categorizada con valores numericos
+```
+• Haz un histograma
+```{r}
+ggplot(creditCard, aes(x=EDUCATION))+
+  geom_histogram()
+```
+• Usa table() para ver cuantos datos de cada tipo tienes.
+```{r}
+table(creditCard$EDUCATION)
+```
+• Normalmente, hay que mirar la descripción de los datos. Esta dice que:
+"Education (1 = graduate school; 2 = university; 3 =
+high school; 4 = others)". ¿Cuantos tipos habías encontrado en el
+apartado anterior?. ¿Que propondrías hacer?. Ten en cuenta que tienes
+que tener claros los niveles antes de crear el factor.
+```{r}
+#una solucion es agrupar en una categori 5 4 0 y 6 en una llamada otros
+creditCard$EDUCATION <- factor(creditCard$EDUCATION)
+creditCard$EDUCATION <- fct_collapse(creditCard$EDUCATION,
+                                     graduate_school = "1",
+                                     university = "2",
+                                     high_school = "3",
+                                     others = c("0","4","5","6"))
+#vemos resultados con
+fct_count(creditCard$EDUCATION)
+#o
+table(creditCard$EDUCATION)
+```
+• Comprueba también la variable Marriage. ¿Cuantos datos tienes de cada tipo?. El diccionario dice "Marital
+status (1 = married; 2 = single; 3 = others)”. ¿que harías aquí?
+```{r}
+table(creditCard$MARRIAGE)
+#Se puedo ver que los valores con 0 son misin values ya que en el 3 se almacenan los casos 'Otros'
+```
+• Dibuja un histograma de los datos. ¿Como están distribuidas las variables? ¿Ves algún tipo de
+comportamiento?. ¿Qué decisión tomarías con los datos?
+```{r}
+ggplot(creditCard, aes(x = MARRIAGE))+
+  geom_histogram()
+
+#se ven 4 posibles valores aunque la descripcion de datos solo aporta 3. Se puede agrupar valor 0 con 3 o se puede elimar los casos 0 pues seran valores nulos
+```
+```{r}
+creditCard$MARRIAGE <- factor(creditCard$MARRIAGE)
+creditCard$MARRIAGE <- fct_collapse(creditCard$MARRIAGE,
+                                     married = "1",
+                                     single = "2",
+                                     others = c("3", "0"))
+#vemos resultados con
+fct_count(creditCard$MARRIAGE)
+```
+
+
+• Crea un gráfico de correlación y elige las variables que estén mas relacionadas con las variable de salida. Ten
+en cuenta que solo puedes usar las numéricas
+```{r}
+library(corrplot)
+corr_matrix <- creditCard %>% 
+              select_if(is.numeric) %>%
+              cor()
+
+corrplot(corr_matrix, tl.col = "black")
+corrplot(corr_matrix, method = "color", tl.col = "black")
+#hay correlacion alta entre ciertas var
+```
+• Crea un nuevo dataset seleccionando las variables que tiene una alta correlación con la variable que
+queremos explicar, default payment
+```{r}
+#Las siguientes variables no tienen valores de correlación elevados:AGE, BILL_AMT2, BILL_AMT3, BILL_AMT4, BILL_AMT5 yBILL_AMT6
+new_credit <- select(creditCard, -one_of('ID','AGE','BILL_AMT3','BILL_AMT2','BILL_AMT4','BILL_AMT5','BILL_AMT6' ))
+```
+• Haz un análisis univariable de las variables seleccionadas, por ejemplo utilizando histogramas.
+```{r}
+ggplot(creditCard, aes(x = default_payment))+
+  geom_histogram()
+ggplot(creditCard, aes(x = PAY_0))+
+  geom_histogram()
+ggplot(creditCard, aes(x = PAY_2))+
+  geom_histogram()
+```
+• ¿Qué observas en esos histogramas?
+```{r}
+#Similitud entre ellos, pero no se presenta alta correlacion en ninguna
+```
+• Como vamos a hacer una regresión linear vamos a escalar los datos para que si una variable tiene una
+varianza con varios ordenes de magnitud mayor que las otras no domine la función objetivo e impida al
+estimador aprender correctamente.
+```{r}
+escalada_credit <- creditCard %>%
+                  select_if(is.numeric) %>%
+                  scale()
+head(escalada_credit)
+```

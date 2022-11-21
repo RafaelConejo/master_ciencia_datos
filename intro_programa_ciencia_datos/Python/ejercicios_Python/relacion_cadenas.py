@@ -35,6 +35,73 @@ def buscar(palabra, sub):
                     
     return position
 
-print(buscar("casa", "sa"))
-print(buscar("casa", "a"))
-print(buscar("casa", "se"))
+def num_vocales(palabra):
+    cont = 0
+    vocales = {'a', 'e', 'i', 'o', 'u'}
+    for i in palabra:
+        if i in vocales:
+            cont = cont+1
+    
+    return cont
+
+
+def vocales(palabra):
+    my_vocal = []
+    vocales = {'a', 'e', 'i', 'o', 'u'}
+    for i in palabra:
+        if i in vocales:
+            my_vocal.append(i)
+    
+    return my_vocal
+
+
+def es_inversa(palabra1, palabra2):
+    inversa = True
+    ini = 0
+    fin = len(palabra2) -1
+
+    if len(palabra1) == len(palabra2):
+        while(inversa and ini < len(palabra1)):
+            if palabra1[ini] != palabra2[fin]:
+                inversa = False
+            ini = ini +1
+            fin = fin -1
+    else:
+        inversa = False
+    return inversa
+
+
+def comunes(palabra1, palabra2):
+    comun = ''
+    for i in palabra1:
+        if i in palabra2 and i not in comun:
+            comun = comun + i
+    
+    return comun
+    
+
+def eco_palabra(palabra):
+    new_eco = ''
+    for i in range(len(palabra)):
+        new_eco = new_eco + palabra
+    
+    return new_eco
+
+def orden_alfabetico(palabra):
+    aux = ''.join(sorted(palabra))
+    if palabra == aux:
+        return True
+    else:
+        return False
+
+def anagrama(palabra1, palabra2):
+    palabra1 = ''.join(sorted(palabra1))
+    palabra2 = ''.join(sorted(palabra2))
+    if palabra1 == palabra2:
+        return True
+    else:
+        return False
+    
+
+print(anagrama("marta", "trama"))
+print(anagrama("marta", "tramas"))

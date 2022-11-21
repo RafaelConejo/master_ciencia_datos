@@ -1,0 +1,269 @@
+---
+title: "ejercicios_clasificacion"
+output: html_document
+date: "2022-11-09"
+---
+
+Librerias necesarias
+```{r}
+library("tidyverse")
+library("dplyr")
+library("ISLR")
+library("MASS")
+```
+
+
+## Ejercicio 1
+
+Create a function my_knn that accepts any measure from the philentropy package and performs basic knn.
+```{r}
+library(philentropy)
+getDistMethods()
+```
+
+
+• A possible function interface could be:
+
+    my_knn <- function(train, train_labels, test, k=1, metric=“euclidean”)
+
+• The function will output the predictions over the test set.
+
+```{r}
+my_knn <- function(train, train_labels, test, k=1, metric="euclidean"){
+  lista = list()
+  df.clase = data.frame()
+  
+  for(i in 1:nrow(test)){
+    # Calculo las distancias
+    dist = distance(rbind(test[i,], train), method = metric, mute.message = T)
+    
+    # Busco el NN
+    ordenado = dist[1,] %>% 
+                    order() %>% 
+                    head(k+1)
+    
+    ordenado = ordenado[2:length(ordenado)]
+    clase= fct_count(train_labels[ordenado]) %>% arrange(desc(n)) %>% slice(1)
+    clase= clase$f %>% as.character()
+    lista= append(lista,clase)
+  }
+  return(unlist(lista))
+}
+```
+
+
+• Select two distance/similarity measures and apply the my_knn function to each of them with different k choices for the breast cancer data and do a comparison of the results (try using a plot).
+```{r}
+# Cargo el dataset
+wbcd <- read.csv("https://resources.oreilly.com/examples/9781784393908/raw/ac9fe41596dd42fc3877cfa8ed410dd346c43548/Machine%20Learning%20with%20R,%20Second%20Edition_Code/Chapter%2003/wisc_bc_data.csv")
+
+# Preproceso los datos
+
+#Elimino los id
+wbcd <- wbcd %>% dplyr::select(-id)
+
+# Recodifico los diagnosticos como un factor
+wbcd <- wbcd %>% mutate(diagnosis = factor(diagnosis, labels = c("Benign", "Malignant")))
+table(wbcd$diagnosis)
+
+# Normalizo los datos
+wbcd_n <- wbcd %>% mutate_if(is.numeric, scale, center = TRUE, scale = TRUE)
+
+
+n <- nrow(wbcd_n)
+percent <- (n * 0.8) %>% floor
+train_sample <- sample(1:n, percent) # randomly pick 80% of the rows
+test_sample <- setdiff(1:n, train_sample) # get the remaining 20% of the rows
+
+```
+
+
+
+```{r}
+X_train <- wbcd_n[train_sample,] %>% dplyr::select(-diagnosis)
+y_train <- wbcd_n[train_sample, "diagnosis"]
+
+test_data <- wbcd_n[test_sample,] %>% dplyr::select(-diagnosis)
+
+predict <- my_knn(X_train, y_train, test_data, k=3, metric="euclidean") 
+```
+
+
+```{r}
+y_test <- wbcd_n[test_sample, "diagnosis"]
+
+table(predict, y_test)
+```
+
+```{r}
+predict_2 <- my_knn(X_train, y_train, test_data, k=5, metric="manhattan") 
+
+table(predict_2, y_test)
+```
+
+
+
+
+
+
+
+## Ejercicio 2
+
+• Using the breast cancer dataset:
+```{r}
+# Cargo el dataset
+wbcd <- read.csv("https://resources.oreilly.com/examples/9781784393908/raw/ac9fe41596dd42fc3877cfa8ed410dd346c43548/Machine%20Learning%20with%20R,%20Second%20Edition_Code/Chapter%2003/wisc_bc_data.csv")
+
+# Preproceso los datos
+
+#Elimino los id
+wbcd <- wbcd %>% dplyr::select(-id)
+
+# Recodifico los diagnosticos como un factor
+wbcd <- wbcd %>% mutate(diagnosis = factor(diagnosis, labels = c("Benign", "Malignant")))
+table(wbcd$diagnosis)
+
+# Normalizo los datos
+wbcd_n <- wbcd %>% mutate_if(is.numeric, scale, center = TRUE, scale = TRUE)
+```
+
+
+    • Divide into training and test (80%, 20%) 32 
+    
+```{r}
+n <- nrow(wbcd_n)
+percent <- (n * 0.8) %>% floor
+train_sample <- sample(1:n, percent) # randomly pick 80% of the rows
+test_sample <- setdiff(1:n, train_sample) # get the remaining 20% of the rows
+
+wbcd_train <- wbcd_n[train_sample,] # subset the 80% of the rows
+wbcd_test <- wbcd_n[test_sample,] # subset 20% of the rows
+```
+
+
+    • Perform 10 fold-cv with logistic regression over the training data. 
+    
+```{r}
+library(caret)
+X_train <- wbcd_n[train_sample,] %>% dplyr::select(-diagnosis)
+y_train <- wbcd_n[train_sample, "diagnosis"]
+
+model_glm <- train(x = X_train, y = y_train, method = "glm", preProcess = c("center", "scale"), tuneLength = 10, trControl = trainControl(method = "cv"))
+model_glm
+```
+
+
+    • Test final model on test data.
+```{r}
+#Retiro las etiquetas del test sample
+test_data <- wbcd_n[test_sample,] %>% dplyr::select(-diagnosis)
+glm_pred <- predict(model_glm, test_data)
+
+table(glm_pred, wbcd_test$diagnosis)
+mean(glm_pred == wbcd_test$diagnosis)
+
+```
+
+    
+
+## Ejercicio 3
+
+  • Use Smarket data (without Today variable)
+  
+  • Try with lda using all Lag variables.
+
+
+```{r}
+data(Smarket)
+Smarket %>% dplyr::select(-Today)
+```
+
+Antes de ejecutar lda con todas se observar si todas las variables Lag tienen una varianza similar y una distribucion normal.
+
+```{r}
+shapiro.test(Smarket$Lag1)
+shapiro.test(Smarket$Lag2)
+shapiro.test(Smarket$Lag3)
+shapiro.test(Smarket$Lag4)
+shapiro.test(Smarket$Lag5)
+```
+
+Los resultados nos dan un p-value muy bajo en todos los casos, no son superiors a un valor de 0.05 por tanto no poseen una distribucción normal y podemos asumir que LDA no funcionará muy bien.
+
+```{r}
+var(Smarket$Lag1)
+var(Smarket$Lag2)
+var(Smarket$Lag3)
+var(Smarket$Lag4)
+var(Smarket$Lag5)
+
+boxplot(Smarket[ , 2:6])
+```
+
+Las varianzas son similares excepto para el caso de Lag5, lo cual puede afectar a los resultados.
+
+Tras estas observaciones se procede a la aplicación de LDA
+
+```{r}
+#Tomamos todos los años menos 2005, para usar estos casos para un futuro predict
+Smarket.lda <- lda(Direction ~ Lag1+Lag2+Lag3+Lag4+Lag5, data=Smarket, subset= Year<2005)
+Smarket.lda
+```
+
+```{r}
+plot(Smarket.lda, type="both")
+```
+
+Podemos predecir los datos a partir del modelo que acabamos de generar
+
+```{r}
+Smarket_2005 <- subset(Smarket, Year == 2005)
+pred_lda <- predict(Smarket.lda, Smarket_2005)
+
+table(pred_lda$class, Smarket_2005$Direction)
+mean(pred_lda$class == Smarket_2005$Direction)
+```
+
+Efectivamente los resultados no son los desados.
+
+Procedamos a representar graficamente estos resultados
+
+```{r}
+library(klaR)
+partimat(Direction ~ Lag1+Lag2+Lag3+Lag4+Lag5, data=Smarket, method="lda")
+```
+
+  • Repeat with qda and compare.
+Primero se comprueba si la varianza es similar para las variables, pero esta vez se realiza la comparación para cada clase
+```{r}
+print('Up')
+var(Smarket[Smarket$Direction == "Up",]$Lag1)
+var(Smarket[Smarket$Direction == "Up",]$Lag2)
+var(Smarket[Smarket$Direction == "Up",]$Lag3)
+var(Smarket[Smarket$Direction == "Up",]$Lag4)
+var(Smarket[Smarket$Direction == "Up",]$Lag5)
+print('Down')
+var(Smarket[Smarket$Direction == "Down",]$Lag1)
+var(Smarket[Smarket$Direction == "Down",]$Lag2)
+var(Smarket[Smarket$Direction == "Down",]$Lag3)
+var(Smarket[Smarket$Direction == "Down",]$Lag4)
+var(Smarket[Smarket$Direction == "Down",]$Lag5)
+```
+De nuevo se da similitud entre todos los casos siendo otra vez la excepcion la variable Lag5.
+Tras ello ejecutamos el algoritmo QDA, de nuevo reservando un año (2005)
+```{r}
+Smarket.qda = qda(Direction ~ Lag1+Lag2+Lag3+Lag4+Lag5, data=Smarket, subset=Year<2005)
+Smarket.qda
+```
+Realizamos ahora una predicción de los datos a partir del QDA generado
+```{r}
+pred_qda = predict(Smarket.qda, Smarket_2005)
+table(pred_qda$class, Smarket_2005$Direction)
+mean(pred_qda$class == Smarket_2005$Direction)
+```
+Se observan unos peores resultados con QDA con respecto a los obtenidos con LDA.
+
+Finalizamos mostrando los resultados de cada uno de los modelos.
+```{r}
+partimat(Direction ~ Lag1+Lag2+Lag3+Lag4+Lag5, data=Smarket, method="qda")
+```

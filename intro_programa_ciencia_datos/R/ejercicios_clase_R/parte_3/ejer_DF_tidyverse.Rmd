@@ -14,6 +14,7 @@ knitr::opts_chunk$set(echo = TRUE)
 Vamos a trabajar con el dataframe flights de la libreria (nycflights13). Inspecciona el dataframe y familiarízate con las variables
 ```{r}
 library(nycflights13)
+library(tidyverse)
 flights
 ```
 
@@ -63,7 +64,7 @@ flights %>% group_by(carrier) %>%
 •	Para cada compañía calcula que dos días del año fueron los que tuvieron más retraso. Ten en cuenta que el valor más pequeño es el primero por defecto, así que tendrás que usar “desc()” para poder hacer el ranking
 ```{r}
 flights %>% group_by(carrier) %>%
-  arrange(desc(dep_delay)) %>%
-  filter(head())
+  arrange(desc(dep_delay), by_group = T) %>%
+  summarise(dep_delay)
 ``` 
 

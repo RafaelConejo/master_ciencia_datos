@@ -1,0 +1,147 @@
+---
+title: "EDA_bupa"
+output: html_document
+date: "2022-11-12"
+---
+
+```{r}
+library(moments)
+library(ggplot2)
+```
+
+
+```{r}
+#Cargo el dataset
+bupa <- read.csv('bupa.dat', comment.char = '@', 
+                     header = FALSE, stringsAsFactors = TRUE)
+
+dim(bupa)
+str(bupa)
+```
+```{r}
+names(bupa) <- c("mcv", "alkphos", "sgpt",
+                 "sgot", "gammagt", "drinks", "selector")
+```
+
+
+
+
+
+
+```{r}
+#Missing values
+any(is.na(bupa))
+
+#muestras duplicadas
+sum(duplicated(bupa))
+
+bupa <- bupa[!duplicated(bupa), ]
+dim(bupa)
+
+#Para resetear los indices
+rownames(bupa) <- NULL
+```
+
+
+
+```{r}
+#Medidad importantes
+summary(bupa)
+```
+
+
+```{r}
+desviacion = apply(bupa, 2, sd)
+format(desviacion, scientific = FALSE)
+```
+
+```{r}
+skev <- apply(bupa, 2, skewness)
+kurt <- apply(bupa, 2, kurtosis)
+format(skev, scientific = FALSE)
+format(kurt, scientific = FALSE)
+```
+
+
+
+Representacion gráfica
+```{r}
+ggplot(bupa, aes(y=mcv)) +
+    geom_boxplot(outlier.color = "red")
+ggplot(bupa, aes(y=alkphos)) +
+    geom_boxplot(outlier.color = "red")
+ggplot(bupa, aes(y=sgpt)) +
+    geom_boxplot(outlier.color = "red")
+ggplot(bupa, aes(y=sgot)) +
+    geom_boxplot(outlier.color = "red")
+ggplot(bupa, aes(y=gammagt)) +
+    geom_boxplot(outlier.color = "red")
+
+
+ggplot(bupa, aes(y=drinks)) +
+    geom_boxplot(outlier.color = "red")
+```
+
+
+```{r}
+ggplot(bupa, aes(x=mcv)) +
+    geom_histogram()
+ggplot(bupa, aes(x=alkphos)) +
+    geom_histogram()
+ggplot(bupa, aes(x=sgpt)) +
+    geom_histogram()
+ggplot(bupa, aes(x=sgot)) +
+    geom_histogram()
+ggplot(bupa, aes(x=gammagt)) +
+    geom_histogram()
+
+
+ggplot(bupa, aes(x=drinks)) +
+    geom_histogram()
+```
+
+
+
+
+
+
+
+Outliers izquierda
+```{r}
+ggplot(bupa, aes(x = mcv  , y = drinks, color = mcv > (quantile(mcv, 0.25) - IQR(mcv)*1.5) )) +
+    geom_point()  +
+  labs(title="Outliers mcv", color="Outliers")
+
+
+ggplot(bupa, aes(x = sgot  , y = drinks, color = sgot > (quantile(sgot, 0.25) - IQR(sgot)*1.5) )) +
+    geom_point()  +
+  labs(title="Outliers sgot", color="Outliers")
+
+
+```
+
+
+
+Outliers derecha
+```{r}
+ggplot(bupa, aes(x = mcv  , y = drinks, color = mcv > (quantile(mcv, 0.75) + IQR(mcv)*1.5) )) +
+    geom_point()  +
+  labs(title="Outliers mcv", color="Outliers")
+
+ggplot(bupa, aes(x = alkphos  , y = drinks, color = alkphos > (quantile(alkphos, 0.75) + IQR(alkphos)*1.5) )) +
+    geom_point()  +
+  labs(title="Outliers alkphos", color="Outliers")
+
+ggplot(bupa, aes(x = sgpt  , y = drinks, color = sgpt > (quantile(sgpt, 0.75) + IQR(sgpt)*1.5) )) +
+    geom_point()  +
+  labs(title="Outliers sgpt", color="Outliers")
+
+ggplot(bupa, aes(x = sgot  , y = drinks, color = sgot > (quantile(sgot, 0.75) + IQR(sgot)*1.5) )) +
+    geom_point()  +
+  labs(title="Outliers sgot", color="Outliers")
+
+ggplot(bupa, aes(x = gammagt  , y = drinks, color = gammagt > (quantile(gammagt, 0.75) + IQR(gammagt)*1.5) )) +
+    geom_point()  +
+  labs(title="Outliers gammagt", color="Outliers")
+
+```

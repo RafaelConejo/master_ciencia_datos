@@ -1,0 +1,73 @@
+\documentclass[12pt,a4paper]{book}
+
+\usepackage{longtable}
+\usepackage{caption,subcaption}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage[spanish]{babel}
+\usepackage{graphicx}
+\usepackage[table]{xcolor}
+\usepackage{wrapfig}
+\usepackage{float} 
+\usepackage[margin=3.5cm]{geometry}
+\hyphenation{Re-fe-ren-cias}
+\usepackage{fancyhdr}
+\graphicspath{ {figures/} }
+%\usepackage{color}              
+% For creating coloured text and background
+\usepackage[hyphens]{url}            
+% For preventing long urls from going past margin
+\usepackage[hidelinks]{hyperref}            
+% For creating hyperlinks in cross references
+\columnsep 0.8 cm
+\pagestyle{plain}
+\newtheorem{teorema}{Teorema}
+\fancyfoot{}
+
+\begin{document}
+	\renewcommand{\tablename}{Tabla}
+	\renewcommand{\refname}{Referencias bibliográficas.}
+	
+	\input{sections/00-Portada}
+	
+	\clearpage\hbox{}\thispagestyle{empty}\newpage
+	
+	\tableofcontents
+	
+	\vspace{1cm}
+	
+	\newpage
+	
+	\thispagestyle{empty}
+	
+	
+	
+	\input{sections/01-intro}
+	\newpage
+	\input{sections/02-california}
+	\newpage
+	\input{sections/03-bupa}
+	\newpage
+	\input{sections/04-regresion}
+	\newpage
+	\input{sections/05-clasificacion}
+	\newpage
+	
+	
+	
+	
+	\addcontentsline{toc}{chapter}{Referencias Bibliográficas}
+	
+	\bibliographystyle{ieeetr}
+	\bibliography{references}
+	
+	
+	
+	
+	
+	
+\end{document}

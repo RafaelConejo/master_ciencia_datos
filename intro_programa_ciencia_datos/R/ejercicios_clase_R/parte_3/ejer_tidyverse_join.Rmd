@@ -41,5 +41,5 @@ full_join(starwars, new_starwars, by = "name")
 ```
 •	¿Como encontrarias las filas que no están en ambos datasets?
 ```{r}
-
+#Utilizaría anti_join() para ver las filas presentes en uno de ellos y no en el otro
 ```

@@ -1,0 +1,163 @@
+\chapter{Análisis Exploratorio de los Datos (EDA). Dataset de clasificación: Bupa}
+
+\section{Descripción del dataset: Bupa}
+El dataset \textbf{Bupa} contiene los resultados de diferentes tipos de análisis de sangre sensibles a los trastornos hepáticos que pueden surgir con un consumo excesivo de alcohol. Datos donados en el 1990.
+
+Cada fila de este conjunto de datos contiene el registro de un solo individuo masculino.
+
+Un dato importante de este dataset es que la séptima variable solía malinterpretarse como una variable que indica la presencia o ausencia de un trastorno hepático, pero esto es incorrecto, esta variable fue creada por investigadores para separar los datos en un conjunto de entrenamiento y otro de test.
+
+\vspace{0.5cm}
+Teniendo en cuenta la función de esta séptima variable, este dataset está formado por 5 variables independientes, las cuales corresponden a los resultados de diferentes análisis de sangre y una variable dependiente, todas variables numéricas. Se recogen un total de 345 muestras que representan el registro de cada individuo masculino.
+Se presentan a continuación las variables independientes:
+\begin{itemize}
+	\item \textbf{mcv}: Variable numérica real que refleja el volumen corpuscular medio
+	
+	\item \textbf{alkphos}: Variable numérica real que refleja la fosfatasa alcalina, una enzima responsable de eliminar grupos de fosfatos de varios tipos de moléculas como nucleótidos, proteínas y otros compuestos fosforilados. Los niveles de fosfatasa alcalina elevados podrían ser signo de daño en el hígado.
+	
+	\item \textbf{sgpt}: Variable numérica real que refleja la alanina aminotransferasa, enzima que se encuentra principalmente en las células del hígado. Niveles altos de esta puede indicar que tiene algún tipo de daño en el hígado. 
+	
+	\item \textbf{sgot}: Variable numérica real que refleja la aspartato aminotransferasa, otra enzima del hígado. Los niveles elevados de esta en la sangre pueden indicar hepatitis, cirrosis, mononucleosis u otras enfermedades del hígado
+	
+	\item \textbf{gammagt}: Variable numérica real que refleja la gamma-glutamil transpeptidasa, es una enzima hepática. Se mide su nivel en sangre siendo un marcador de laboratorio de enfermedad hepática (mala en altos niveles).
+	
+	\item \textbf{selector}: Variable numérica entera creada por los investigadores para dividir los datos en el conjunto de train y test. 
+\end{itemize}
+
+La variable dependiente utilizada para la clasificación es \textbf{drinks}, un valor numérico real que refleja el número de medias pintas equivalentes a la cantidad de bebidas alcohólicas que se beben por día. 
+
+
+
+\section{Planteamiento de hipótesis}
+\begin{itemize}
+	\item 
+\end{itemize}
+
+
+
+
+
+\section{Procesamiento de los datos}
+Siguiendo la misma idea que con el dataset anterior se pretende profundizar en los diferentes atributos que componen este conjunto de datos para ampliar eel conocimiento sobre este y determinar cualquier característica que facilite el posterior desarrollo de modelos. \\
+
+El primer paso es la búsqueda de missing values dentro de los datos, concluyendo en que este dataset no posee ningún Missing value.
+Sin embargo se detectan 4 filas duplicadas, las cuales procedemos a eliminar, reduciéndose el número de muestras a 341.
+
+
+
+
+
+\subsection{Análisis de las variables}
+Se analiza el comportamiento de las diferentes variables mediante el calculo de diversas medidas de posición: la media aritmética, mediana, primer y tercer cuartil, valores máximos y mínimos de cada variable. También se estudia la dispersión de las distribuciones mediante el calculo  de la desviación típica, mientras que la normalidad de los datos se estudia con los coeficientes de Skewness y Kurtosis.
+
+Se estudia cada variable en detalle mediante el calculo de las medidas previamente mencionadas. Dicho estudio es acompañado con una serie de representaciones gráficas que facilite la comprensión de los resultados:
+
+\begin{itemize}
+	\item \textbf{mcv}
+	\begin{table}[]
+		\begin{tabular}{ll}
+			& mcv        \\
+			Valor mínimo            & 65.00      \\
+			Primer cuartil          & 87.00      \\
+			Mediana                 & 90.00      \\
+			Media                   & 90.12      \\
+			Tercer cuartil          & 92.00      \\
+			Valor máximo            & 103.00     \\ \hline
+			Desviación estandar     & 4.4523855  \\ \hline
+			Coeficiente de skewness & -0.3765269 \\
+			Coeficiente de Kurtosis & 5.542126  
+		\end{tabular}
+	\end{table}
+	
+	
+	\item \textbf{alkphos}: 
+	\begin{table}[]
+		\begin{tabular}{ll}
+			& alkphos    \\
+			Valor mínimo            & 23.00      \\
+			Primer cuartil          & 57.00      \\
+			Mediana                 & 67.00      \\
+			Media                   & 69.89      \\
+			Tercer cuartil          & 80.00      \\
+			Valor máximo            & 138.00     \\ \hline
+			Desviación estandar     & 18.4319883 \\ \hline
+			Coeficiente de skewness & 0.7457300  \\
+			Coeficiente de Kurtosis & 3.690844  
+		\end{tabular}
+	\end{table}
+	
+	
+	\item \textbf{sgpt}: 
+	\begin{table}[]
+		\begin{tabular}{ll}
+			& sgpt       \\
+			Valor mínimo            & 4.00       \\
+			Primer cuartil          & 19.00      \\
+			Mediana                 & 26.00      \\
+			Media                   & 30.51      \\
+			Tercer cuartil          & 34.00      \\
+			Valor máximo            & 155.00     \\ \hline
+			Desviación estandar     & 19.5862490 \\ \hline
+			Coeficiente de skewness & 3.0385262  \\
+			Coeficiente de Kurtosis & 16.470290 
+		\end{tabular}
+	\end{table}
+	
+	
+	\item \textbf{sgot}: 
+	\begin{table}[]
+		\begin{tabular}{ll}
+			& sgot       \\
+			Valor mínimo            & 5.00       \\
+			Primer cuartil          & 19.00      \\
+			Mediana                 & 23.00      \\
+			Media                   & 24.66      \\
+			Tercer cuartil          & 27.00      \\
+			Valor máximo            & 82.00      \\ \hline
+			Desviación estandar     & 10.1155409 \\ \hline
+			Coeficiente de skewness & 2.2703414  \\
+			Coeficiente de Kurtosis & 10.894188 
+		\end{tabular}
+	\end{table}
+	
+	
+	\item \textbf{gammagt}: 
+	\begin{table}[]
+		\begin{tabular}{ll}
+			& gammagt    \\
+			Valor mínimo            & 5.0        \\
+			Primer cuartil          & 15.0       \\
+			Mediana                 & 25.0       \\
+			Media                   & 38.4       \\
+			Tercer cuartil          & 46.0       \\
+			Valor máximo            & 297.0      \\ \hline
+			Desviación estandar     & 39.4393786 \\ \hline
+			Coeficiente de skewness & 2.8387489  \\
+			Coeficiente de Kurtosis & 13.180100 
+		\end{tabular}
+	\end{table}
+	
+	
+	\item \textbf{selector}: 
+	Esta variable no merece de estudio profunzo pues valdrá 1 o 2 según el dato pertenezca al conjunto de entrenamiento o test.
+	
+	
+	
+	
+\end{itemize}
+
+
+\begin{table}[]
+	\begin{tabular}{ll}
+		& drinks    \\
+		Valor mínimo            & 0.000     \\
+		Primer cuartil          & 0.500     \\
+		Mediana                 & 3.000     \\
+		Media                   & 3.431     \\
+		Tercer cuartil          & 5.000     \\
+		Valor máximo            & 20.000    \\ \hline
+		Desviación estandar     & 3.3416404 \\ \hline
+		Coeficiente de skewness & 1.5616997 \\
+		Coeficiente de Kurtosis & 6.673044 
+	\end{tabular}
+\end{table}
