@@ -1,0 +1,183 @@
+\section{Apéndice B. Código EDA dataset de clasificación 'Bupa'}
+
+\begin{lstlisting}[language=R]
+#Cargo librerias
+library(moments)
+library(ggplot2)
+library(tidyverse)
+
+#Cargo el dataset
+bupa <- read.csv('bupa.dat', comment.char = '@', 
+header = FALSE, stringsAsFactors = TRUE)
+
+dim(bupa)
+str(bupa)
+
+#Asigno nombre a las variables
+names(bupa) <- c("mcv", "alkphos", "sgpt",
+"sgot", "gammagt", "drinks", "selector")
+	
+	
+#Missing values
+any(is.na(bupa))
+
+#muestras duplicadas
+sum(duplicated(bupa))
+
+bupa <- bupa[!duplicated(bupa), ]
+dim(bupa)
+
+#Para resetear los indices
+rownames(bupa) <- NULL
+
+#Medidadas importantes
+summary(bupa)
+
+desviacion = apply(bupa, 2, sd)
+format(desviacion, scientific = FALSE)
+skev <- apply(bupa, 2, skewness)
+kurt <- apply(bupa, 2, kurtosis)
+format(skev, scientific = FALSE)
+format(kurt, scientific = FALSE)
+
+
+#Representacion grafica box_plot
+ggplot(bupa, aes(y=mcv)) +
+geom_boxplot(outlier.color = "red")
+ggplot(bupa, aes(y=alkphos)) +
+geom_boxplot(outlier.color = "red")
+ggplot(bupa, aes(y=sgpt)) +
+geom_boxplot(outlier.color = "red")
+ggplot(bupa, aes(y=sgot)) +
+geom_boxplot(outlier.color = "red")
+ggplot(bupa, aes(y=gammagt)) +
+geom_boxplot(outlier.color = "red")
+
+
+ggplot(bupa, aes(y=drinks)) +
+geom_boxplot(outlier.color = "red")
+
+
+
+#Representacion grafica histogramas
+ggplot(bupa, aes(x=mcv)) +
+geom_histogram()
+ggplot(bupa, aes(x=alkphos)) +
+geom_histogram()
+ggplot(bupa, aes(x=sgpt)) +
+geom_histogram()
+ggplot(bupa, aes(x=sgot)) +
+geom_histogram()
+ggplot(bupa, aes(x=gammagt)) +
+geom_histogram()
+
+
+ggplot(bupa, aes(x=drinks)) +
+geom_histogram(bins = 5)
+
+
+#Shapiro-wilk test
+shapiro.test(sample(bupa[ , 'mcv']))
+shapiro.test(sample(bupa[ , 'alkphos']))
+shapiro.test(sample(bupa[ , 'sgpt']))
+shapiro.test(sample(bupa[ , 'sgot']))
+shapiro.test(sample(bupa[ , 'gammagt']))
+
+
+
+#Analisis Outliers izquierda
+ggplot(bupa, aes(x = mcv  , y = drinks, color = mcv < (quantile(mcv, 0.25) - IQR(mcv)*1.5) )) +
+geom_point()  +
+labs(title="Outliers mcv", color="Outliers")
+
+
+ggplot(bupa, aes(x = sgot  , y = drinks, color = sgot < (quantile(sgot, 0.25) - IQR(sgot)*1.5) )) +
+geom_point()  +
+labs(title="Outliers sgot", color="Outliers")
+
+
+#Analisis Outliers izquierda
+ggplot(bupa, aes(x = mcv  , y = drinks, color = mcv > (quantile(mcv, 0.75) + IQR(mcv)*1.5) )) +
+geom_point()  +
+labs(title="Outliers mcv", color="Outliers")
+
+ggplot(bupa, aes(x = alkphos  , y = drinks, color = alkphos > (quantile(alkphos, 0.75) + IQR(alkphos)*1.5) )) +
+geom_point()  +
+labs(title="Outliers alkphos", color="Outliers")
+
+ggplot(bupa, aes(x = sgpt  , y = drinks, color = sgpt > (quantile(sgpt, 0.75) + IQR(sgpt)*1.5) )) +
+geom_point()  +
+labs(title="Outliers sgpt", color="Outliers")
+
+ggplot(bupa, aes(x = sgot  , y = drinks, color = sgot > (quantile(sgot, 0.75) + IQR(sgot)*1.5) )) +
+geom_point()  +
+labs(title="Outliers sgot", color="Outliers")
+
+ggplot(bupa, aes(x = gammagt  , y = drinks, color = gammagt > (quantile(gammagt, 0.75) + IQR(gammagt)*1.5) )) +
+geom_point()  +
+labs(title="Outliers gammagt", color="Outliers")
+
+
+#Preparo la variable dependiente
+unique(bupa$drinks)
+
+bupa$drinks[bupa$drinks <= 5] <- 0
+bupa$drinks[bupa$drinks > 5] <- 1
+
+summary(bupa)
+
+
+
+#Separo segun la variable selector
+bupa_train <- bupa %>% filter(selector == 2)
+bupa_test <- bupa %>% filter(selector == 1)
+
+dim(bupa_train)
+dim(bupa_test)
+bupa_train %>% count(drinks)
+bupa_test %>% count(drinks)
+
+
+#Matriz de correlaciones
+no_label_bupa <- bupa %>% select(c(-drinks, -selector))
+corr_matrix <- cor(no_label_bupa, method = "kendall")
+corrplot(corr_matrix, method = "num", tl.col = "black")
+
+
+
+#Hipotesis 1
+ggplot(bupa, aes(x = alkphos, y = mcv, color = drinks))+
+geom_point() 
+
+ggplot(bupa, aes(x = sgpt, y = mcv, color = drinks))+
+geom_point() 
+
+ggplot(bupa, aes(x = sgot, y = mcv, color = drinks))+
+geom_point() 
+
+ggplot(bupa, aes(x = gammagt, y = mcv, color = drinks))+
+geom_point() 
+
+
+
+#hipotesis 2
+ggplot(bupa, aes(x = alkphos, y = sgpt))+
+geom_point() 
+
+ggplot(bupa, aes(x = alkphos, y = sgot))+
+geom_point() 
+
+ggplot(bupa, aes(x = alkphos, y = gammagt))+
+geom_point() 
+
+
+ggplot(bupa, aes(x = sgpt, y = sgot))+
+geom_point() 
+
+ggplot(bupa, aes(x = sgpt, y = gammagt))+
+geom_point() 
+
+
+ggplot(bupa, aes(x = sgot, y = gammagt))+
+geom_point() 
+\end{lstlisting}

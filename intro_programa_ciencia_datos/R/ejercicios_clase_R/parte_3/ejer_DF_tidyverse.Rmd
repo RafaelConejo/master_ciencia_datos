@@ -65,6 +65,7 @@ flights %>% group_by(carrier) %>%
 ```{r}
 flights %>% group_by(carrier) %>%
   arrange(desc(dep_delay), by_group = T) %>%
-  summarise(dep_delay)
+  summarise(dep_delay) %>%
+  top_n(2, dep_delay)
 ``` 
 

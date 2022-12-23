@@ -1,0 +1,257 @@
+\chapter{Apéndice}
+\section{Apéndice A. Código EDA dataset de regresión 'California'}
+
+
+
+
+\definecolor{miverde}{rgb}{0,0.6,0}
+\definecolor{migris}{rgb}{0.5,0.5,0.5}
+\definecolor{mimalva}{rgb}{0.58,0,0.82}
+
+\lstset{ %
+	backgroundcolor=\color{white},   % Indica el color de fondo; necesita que se añada \usepackage{color} o \usepackage{xcolor}
+	basicstyle=\footnotesize,        % Fija el tamaño del tipo de letra utilizado para el código
+	breakatwhitespace=false,         % Activarlo para que los saltos automáticos solo se apliquen en los espacios en blanco
+	breaklines=true,                 % Activa el salto de línea automático
+	captionpos=b,                    % Establece la posición de la leyenda del cuadro de código
+	commentstyle=\color{miverde},    % Estilo de los comentarios
+	deletekeywords={...},            % Si se quiere eliminar palabras clave del lenguaje
+	escapeinside={\%*}{*)},          % Si quieres incorporar LaTeX dentro del propio código
+	extendedchars=true,              % Permite utilizar caracteres extendidos no-ASCII; solo funciona para codificaciones de 8-bits; para UTF-8 no funciona. En xelatex necesita estar a true para que funcione.
+	frame=false,	                   % Añade un marco al código
+	keepspaces=true,                 % Mantiene los espacios en el texto. Es útil para mantener la indentación del código(puede necesitar columns=flexible).
+	keywordstyle=\color{blue},       % estilo de las palabras clave
+	language=R,                 % El lenguaje del código
+	otherkeywords={*,...},           % Si se quieren añadir otras palabras clave al lenguaje
+	numbers=none,                    % Posición de los números de línea (none, left, right).
+	numbersep=5pt,                   % Distancia de los números de línea al código
+	numberstyle=none, % Estilo para los números de línea
+	rulecolor=\color{white},         % Si no se activa, el color del marco puede cambiar en los saltos de línea entre textos que sea de otro color, por ejemplo, los comentarios, que están en verde en este ejemplo
+	showspaces=false,                % Si se activa, muestra los espacios con guiones bajos; sustituye a 'showstringspaces'
+	showstringspaces=false,          % subraya solamente los espacios que estén en una cadena de esto
+	showtabs=false,                  % muestra las tabulaciones que existan en cadenas de texto con guión bajo
+	stepnumber=2,                    % Muestra solamente los números de línea que corresponden a cada salto. En este caso: 1,3,5,...
+	stringstyle=\color{mimalva},     % Estilo de las cadenas de texto
+	tabsize=2,	                   % Establece el salto de las tabulaciones a 2 espacios
+	title=\lstname                   % muestra el nombre de los ficheros incluidos al utilizar \lstinputlisting; también se puede utilizar en el parámetro caption
+}
+
+	
+
+
+
+\begin{lstlisting}[language=R]
+#Cargo librerias necesarias
+library(moments)
+library(ggplot2)
+library(corrplot)
+library(ggpubr)
+library(tidyverse)
+
+#Cargo el dataset
+california <- read.csv('california.dat', comment.char = '@', 
+header = FALSE, stringsAsFactors = TRUE)
+
+#Compruebo dimensiones e info de las variables
+dim(california)
+str(california)
+
+#Pongo nombre a las variables
+names(california) <- c("Longitude", "Latitude", "HousingMedianAge",
+"TotalRooms", "TotalBedrooms", "Population", "Households",
+"MedianIncome", "MedianHouseValue")
+
+#Asignacion automatica, facilita el acceso a los campos
+#n <- length(names(california)) - 1
+#names(california)[1:n] <- paste ("X", 1:n, sep="")
+#names(california)[n+1] <- "Y"
+
+#Missing values
+any(is.na(california))
+
+#muestras duplicadas
+sum(duplicated(california))
+
+#Medidad importantes
+summary(california)
+desviacion = apply(california, 2, sd)
+format(desviacion, scientific = FALSE)
+skev <- apply(california, 2, skewness)
+kurt <- apply(california, 2, kurtosis)
+format(skev, scientific = FALSE)
+format(kurt, scientific = FALSE)
+
+#Representacion grafica de los diagramas de cajas
+ggplot(california, aes(y=Longitude)) +
+geom_boxplot(outlier.color = "red")
+ggplot(california, aes(y=Latitude)) +
+geom_boxplot(outlier.color = "red")
+ggplot(california, aes(y=HousingMedianAge)) +
+geom_boxplot(outlier.color = "red")
+ggplot(california, aes(y=TotalRooms)) +
+geom_boxplot(outlier.color = "red")
+ggplot(california, aes(y=TotalBedrooms)) +
+geom_boxplot(outlier.color = "red")
+ggplot(california, aes(y=Population)) +
+geom_boxplot(outlier.color = "red")
+ggplot(california, aes(y=Households)) +
+geom_boxplot(outlier.color = "red")
+ggplot(california, aes(y=MedianIncome)) +
+geom_boxplot(outlier.color = "red")
+
+ggplot(california, aes(y=MedianHouseValue)) +
+geom_boxplot(outlier.color = "red")
+
+
+#Representacion grafica de los histogramas
+ggplot(california, aes(x=Longitude)) +
+geom_histogram()
+ggplot(california, aes(x=Latitude)) +
+geom_histogram()
+ggplot(california, aes(x=HousingMedianAge)) +
+geom_histogram()
+ggplot(california, aes(x=TotalRooms)) +
+geom_histogram()
+ggplot(california, aes(x=TotalBedrooms)) +
+geom_histogram()
+ggplot(california, aes(x=Population)) +
+geom_histogram()
+ggplot(california, aes(x=Households)) +
+geom_histogram()
+ggplot(california, aes(x=MedianIncome)) +
+geom_histogram()
+
+ggplot(california, aes(x=MedianHouseValue)) +
+geom_histogram()
+
+
+#Test Shapiro-Wilk para comprobar normalidad en los datos
+shapiro.test(sample(california[ , 'Longitude'], 5000))
+shapiro.test(sample(california[ , 'Latitude'], 5000))
+shapiro.test(sample(california[ , 'HousingMedianAge'], 5000))
+shapiro.test(sample(california[ , 'TotalRooms'], 5000))
+shapiro.test(sample(california[ , 'TotalBedrooms'], 5000))
+shapiro.test(sample(california[ , 'Population'], 5000))
+shapiro.test(sample(california[ , 'Households'], 5000))
+shapiro.test(sample(california[ , 'MedianIncome'], 5000))
+
+
+#Elimino los casos de MedianHouseValue == 500000
+ggplot(california, aes(x = MedianIncome , y= MedianHouseValue)) +
+geom_point()
+
+california_clean <- drop(california[california$MedianHouseValue < 500000, ])
+#Para resetear los indices
+rownames(california_clean) <- NULL
+
+ggplot(california_clean, aes(x = MedianIncome , y= MedianHouseValue)) +
+geom_point()
+
+
+# Estudio de los Outliers
+ggplot(california_clean, aes(x = TotalRooms  , y = MedianHouseValue, color = TotalRooms > (quantile(TotalRooms, 0.75) + IQR(TotalRooms)*1.5) )) +
+geom_point()  +
+labs(title="Outliers TotalRooms", color="Outliers")
+
+ggplot(california_clean, aes(x = TotalBedrooms  , y = MedianHouseValue, color = TotalBedrooms > (quantile(TotalBedrooms, 0.75) + IQR(TotalBedrooms)*1.5) )) +
+geom_point()  +
+labs(title="Outliers TotalBedrooms", color="Outliers")
+
+ggplot(california_clean, aes(x = Population  , y = MedianHouseValue, color = Population > (quantile(Population, 0.75) + IQR(Population)*1.5) )) +
+geom_point()  +
+labs(title="Outliers Population", color="Outliers")
+
+ggplot(california_clean, aes(x = Households  , y = MedianHouseValue, color = Households > (quantile(Households, 0.75) + IQR(Households)*1.5) )) +
+geom_point()  +
+labs(title="Outliers Households", color="Outliers")
+
+ggplot(california_clean, aes(x = MedianIncome  , y = MedianHouseValue, color = MedianIncome > (quantile(MedianIncome, 0.75) + IQR(MedianIncome)*1.5) )) +
+geom_point()  +
+labs(title="Outliers MedianIncome", color="Outliers")
+
+
+#Elimino los outliers
+out_TotalRooms <- quantile(california_clean$TotalRooms, 0.75) + IQR(california_clean$TotalRooms)*1.5
+
+out_TotalBedrooms <- quantile(california_clean$TotalBedrooms, 0.75) + IQR(california_clean$TotalBedrooms)*1.5
+
+out_Population <- quantile(california_clean$Population, 0.75) + IQR(california_clean$Population)*1.5
+
+out_Households <- quantile(california_clean$Households, 0.75) + IQR(california_clean$Households)*1.5
+
+
+
+california_new <- drop(california_clean[california_clean$TotalRooms < out_TotalRooms ,])
+california_new <- drop(california_clean[california_clean$TotalBedrooms < out_TotalBedrooms ,])
+california_new <- drop(california_clean[california_clean$Population < out_Population ,])
+california_new <- drop(california_clean[california_clean$Households < out_Households ,])
+#Para resetear los indices
+rownames(california_new) <- NULL
+
+#Se eliminan un 2% solamente, interesa
+dim(california_new)
+
+
+#Matriz de correlaciones
+corr_matrix <- cor(california_new, method = "kendall")
+corrplot(corr_matrix, method = "color", tl.col = "black")
+
+
+#Primera hipotesis
+ggplot(california_new, aes(x = Longitude, y = Latitude, color = MedianHouseValue, hue = MedianHouseValue))+
+geom_point() +
+labs(title="Valor medio de la vivienda dependiendo de la localizacion", color="MedianHouseValue") +
+scale_color_gradient(low="blue", high="red")
+
+mapa <- png::readPNG("mapa.png")
+
+ggplot(california_new, aes(x = Longitude, y = Latitude, color = MedianHouseValue, hue = MedianHouseValue))+
+background_image(mapa)+
+geom_point() +
+labs(title="Valor medio de la vivienda dependiendo de la localizacion", color="MedianHouseValue") +
+scale_color_gradient(low="blue", high="red")
+
+
+#Segunda hipotesis
+ggplot(california_new, aes(x = Longitude, y = Latitude, color = MedianHouseValue, size = Population))+
+background_image(mapa)+
+geom_point() +
+labs(title="Valor medio de la vivienda dependiendo de la localizacion", color="MedianHouseValue") +
+scale_color_gradient(low="blue", high="red")
+
+ggplot(california_new, aes(x = Population, y = MedianHouseValue))+
+geom_point(color = "blue") 
+
+
+#Hipotesis 3
+ggplot(california_new, aes(x = MedianIncome, y = MedianHouseValue))+
+geom_point(color = "blue") 
+
+
+#Hipotesis 4
+ggplot(california_new, aes(x = HousingMedianAge, y = MedianHouseValue))+
+geom_point(color = "blue") 
+
+ggplot(california_new, aes(x = Longitude, y = Latitude, color = HousingMedianAge))+
+background_image(mapa)+
+geom_point() +
+labs(title="Edad media de la vivienda dependiendo de la localizacion", color="HousingMedianAge") +
+scale_color_gradient(low="green", high="purple")
+
+ggplot(california_new, aes(x = Longitude, y = Latitude, color = MedianHouseValue, hue = MedianHouseValue))+
+background_image(mapa)+
+geom_point() +
+labs(title="Valor medio de la vivienda dependiendo de la localizacion", color="MedianHouseValue") +
+scale_color_gradient(low="blue", high="red")
+\end{lstlisting}
+
+
+
+
+
+
+
+
+
+
+

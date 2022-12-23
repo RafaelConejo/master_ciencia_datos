@@ -1,0 +1,356 @@
+---
+title: "clasificacion"
+output: html_document
+date: "2022-12-08"
+---
+
+```{r}
+library(tidyverse)
+library(class)
+library(caret)
+library(car)
+library("MASS")
+library(corrplot)
+```
+
+
+```{r}
+#Cargo el dataset
+bupa <- read.csv('bupa.dat', comment.char = '@', 
+                     header = FALSE, stringsAsFactors = TRUE)
+
+dim(bupa)
+str(bupa)
+```
+
+```{r}
+names(bupa) <- c("mcv", "alkphos", "sgpt",
+                 "sgot", "gammagt", "drinks", "selector")
+```
+
+
+```{r}
+bupa <- bupa[!duplicated(bupa), ]
+
+#Para resetear los indices
+rownames(bupa) <- NULL
+```
+
+
+
+```{r}
+unique(bupa$drinks)
+bupa$drinks[bupa$drinks <= 5] <- 0
+bupa$drinks[bupa$drinks > 5] <- 1
+```
+
+
+```{r}
+#Separo según la variable selector
+bupa_train <- bupa %>% filter(selector == 2)
+bupa_test <- bupa %>% filter(selector == 1)
+
+bupa_train <- bupa_train %>% select(-selector)
+bupa_test <- bupa_test %>% select(-selector)
+```
+
+```{r}
+summary(bupa_train)
+```
+
+```{r}
+bupa_train_scale <- as.data.frame(scale(bupa_train))
+bupa_train_scale[,'drinks'] <- bupa_train$drinks
+bupa_test_scale <- as.data.frame(scale(bupa_test))
+bupa_test_scale[,'drinks'] <- bupa_test$drinks
+```
+```{r}
+summary(bupa_train_scale)
+```
+
+
+
+```{r}
+# Modelo con k=7
+knn_pred_1 <- knn(train=bupa_train_scale[,-ncol(bupa_train_scale)],                                                  test=bupa_test_scale[,-ncol(bupa_test_scale)],
+                      cl=bupa_train_scale[,ncol(bupa_train_scale)], k=7)
+```
+
+```{r}
+# Evaluating model performance
+result <- table(knn_pred_1, bupa_test_scale[, 'drinks'])
+
+# Accuracy
+sum(diag(result)) / length(knn_pred_1)
+```
+
+
+
+
+# Modelos basados en k-NN
+#Cargo todos los modelos pues debo aplicar los cambios
+```{r}
+# Cargar conjuntos de entrenamiento
+bupa_train1 <- read.csv("bupa-10-1tra.dat", comment.char="@")
+bupa_train2 <- read.csv("bupa-10-2tra.dat", comment.char="@")
+bupa_train3 <- read.csv("bupa-10-3tra.dat", comment.char="@")
+bupa_train4 <- read.csv("bupa-10-4tra.dat", comment.char="@")
+bupa_train5 <- read.csv("bupa-10-5tra.dat", comment.char="@")
+bupa_train6 <- read.csv("bupa-10-6tra.dat", comment.char="@")
+bupa_train7 <- read.csv("bupa-10-7tra.dat", comment.char="@")
+bupa_train8 <- read.csv("bupa-10-8tra.dat", comment.char="@")
+bupa_train9 <- read.csv("bupa-10-9tra.dat", comment.char="@")
+bupa_train10 <- read.csv("bupa-10-10tra.dat", comment.char="@")
+
+# Cargar conjuntos de test
+bupa_test1 <- read.csv("bupa-10-1tst.dat", comment.char="@")
+bupa_test2 <- read.csv("bupa-10-2tst.dat", comment.char="@")
+bupa_test3 <- read.csv("bupa-10-3tst.dat", comment.char="@")
+bupa_test4 <- read.csv("bupa-10-4tst.dat", comment.char="@")
+bupa_test5 <- read.csv("bupa-10-5tst.dat", comment.char="@")
+bupa_test6 <- read.csv("bupa-10-6tst.dat", comment.char="@")
+bupa_test7 <- read.csv("bupa-10-7tst.dat", comment.char="@")
+bupa_test8 <- read.csv("bupa-10-8tst.dat", comment.char="@")
+bupa_test9 <- read.csv("bupa-10-9tst.dat", comment.char="@")
+bupa_test10 <- read.csv("bupa-10-10tst.dat", comment.char="@")
+```
+
+
+```{r}
+#Funcion para hacer la transformaciones del EDA
+df_prepare <- function(df){
+  names(df) <- c("mcv", "alkphos", "sgpt",
+                 "sgot", "gammagt", "drinks", "selector")
+  
+  #eliminar repetidos
+  df <- df[!duplicated(df), ]
+  #Para resetear los indices
+  rownames(df) <- NULL
+  
+  #Eliminados la columna selector, no es útil
+  df <- df %>% select(-selector)
+
+  df$drinks[df$drinks <= 5] <- 0
+  df$drinks[df$drinks > 5] <- 1
+  
+  df_scale <- as.data.frame(scale(df))
+  df_scale[,'drinks'] <- df$drinks
+  
+  df_scale
+}
+```
+
+```{r}
+# Generamos listas que contienen los folds de Validación Cruzada.
+train_list <- list(bupa_train1, bupa_train2, bupa_train3, bupa_train4, bupa_train5, bupa_train6, bupa_train7, bupa_train8, bupa_train9, bupa_train10)
+
+test_list <- list(bupa_test1, bupa_test2, bupa_test3, bupa_test4, bupa_test5, bupa_test6, bupa_test7, bupa_test8, bupa_test9, bupa_test10)
+```
+
+```{r}
+#Aplicamos los cambios en todos
+train_list <- lapply(train_list, df_prepare)
+test_list <- lapply(test_list, df_prepare)
+```
+
+
+
+
+
+# Evaluar modelos con validación cruzada 10-fold
+```{r}
+knn_fold_bupa <- function(train_list, test_list, k) {
+  sapply(1:length(train_list), function(i) {
+    # Aplicamos modelo
+    pred <- knn(train = train_list[[i]] %>% select(-drinks), 
+                test = test_list[[i]] %>% select(-drinks), 
+                cl = train_list[[i]]$drinks, k=k)
+    # Calculamos el accuracy
+    sum(pred == test_list[[i]]$drinks) / length(pred)
+  })
+}
+```
+
+
+```{r}
+# Evaluar knn train
+knn_1 <- knn_fold_bupa(train_list, test_list, 1)
+knn_2 <- knn_fold_bupa(train_list, test_list, 3)
+knn_3 <- knn_fold_bupa(train_list, test_list, 5)
+knn_4 <- knn_fold_bupa(train_list, test_list, 7)
+knn_5 <- knn_fold_bupa(train_list, test_list, 10)
+knn_6 <- knn_fold_bupa(train_list, test_list, 13)
+knn_7 <- knn_fold_bupa(train_list, test_list, 15)
+knn_8 <- knn_fold_bupa(train_list, test_list, 17)
+knn_9 <- knn_fold_bupa(train_list, test_list, 20)
+knn_10 <- knn_fold_bupa(train_list, test_list, 30)
+```
+
+
+```{r}
+l <- rbind(knn_1, knn_2, knn_3, knn_4, knn_5, knn_6, knn_7, knn_8, knn_9, knn_10)
+l_mean <- cbind(apply(l, 1, mean))
+l_all <- cbind(l, apply(l, 1, mean))
+```
+```{r}
+l_all
+```
+
+# Knn en train del mejor modelo
+```{r}
+knn_7 <- knn_fold_bupa(train_list, test_list, 15)
+mean(knn_7)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+```{r}
+# Comprobamos variabilidad para LDA
+var_test <- apply(bupa, 2, var)
+var_test
+```
+
+
+
+
+# Función para LDA en validación cruzada
+```{r}
+lda_fold_bupa <- function(formula, train_list, test_list) {
+  sapply(1:length(train_list), function(i) {
+    # modelo lda
+    fit <- lda(formula, data = train_list[[i]])
+    # Calculamos predicciones
+    pred <- predict(fit, test_list[[i]]%>%select(-drinks))
+    
+    # Calculamos la precisión
+    sum(pred$class == test_list[[i]]$drinks) / length(pred$class)
+  })
+}
+
+```
+
+
+
+```{r}
+lda_fold <- lda_fold_bupa(drinks ~ ., train_list, test_list)
+
+mean(lda_fold)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+```{r}
+# Comprobamos variabilidad para QDA
+#Cambio para poder usar levene test
+bupa$drinks[bupa$drinks == 0] <- '0'
+bupa$drinks[bupa$drinks == 1] <- '1'
+
+leveneTest(mcv ~ drinks, bupa)
+leveneTest(alkphos ~ drinks, bupa)
+leveneTest(sgpt ~ drinks, bupa)
+leveneTest(sgot ~ drinks, bupa)
+leveneTest(gammagt ~ drinks, bupa)
+
+bupa$drinks[bupa$drinks == 0] <- 0
+bupa$drinks[bupa$drinks == 1] <- 1
+```
+
+
+
+
+
+
+#Correlacion por clases
+```{r}
+bupa_0 <- bupa %>% filter(drinks == 0) %>% select(-c(selector,drinks))
+
+corr_matrix <- cor(bupa_0, method = "kendall")
+corrplot(corr_matrix, method = "num", tl.col = "black")
+```
+```{r}
+bupa_1 <- bupa %>% filter(drinks == 1) %>% select(-c(selector,drinks))
+
+corr_matrix <- cor(bupa_1, method = "kendall")
+corrplot(corr_matrix, method = "num", tl.col = "black")
+```
+
+
+
+
+
+
+
+
+
+# Función para QDA en validación cruzada
+
+```{r}
+qda_fold_bupa <- function(formula, train_list, test_list) {
+  sapply(1:length(train_list), function(i) {
+    # modelo lda
+    fit <- qda(formula, data = train_list[[i]])
+    # Calculamos predicciones
+    pred <- predict(fit, test_list[[i]]%>%select(-drinks))
+    
+    # Calculamos la precisión
+    sum(pred$class == test_list[[i]]$drinks) / length(pred$class)
+  })
+}
+
+```
+
+
+
+```{r}
+qda_fold <- qda_fold_bupa(drinks ~ ., train_list, test_list)
+mean(qda_fold)
+```
+
+
+
+
+
+#Agrupamos los resultados de los 3 modelos
+```{r}
+results <- cbind(mean(knn_7), mean(lda_fold), mean(qda_fold))
+results
+```
+
+```{r}
+#leemos la tabla con los errores medios de test
+resultados <- read.csv("clasif_test_alumos.csv")
+tablatst <- cbind(resultados[,2:dim(resultados)[2]])
+colnames(tablatst) <- names(resultados)[2:dim(resultados)[2]]
+rownames(tablatst) <- resultados[,1]
+```
+```{r}
+#Pongo mis resultados en mi dataset bupa
+tablatst["bupa", ] <- results
+```
+
+
+
+# test friedman
+```{r}
+test_friedman <- friedman.test(as.matrix(tablatst))
+test_friedman
+```

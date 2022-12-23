@@ -1,0 +1,299 @@
+\section{Apéndice C. Código Regresión sobre California}
+
+\begin{lstlisting}[language=R]
+#Cargo librerias
+library(kknn)
+library(dplyr)
+library(ggplot2)
+library(corrplot)
+
+#Cargo el dataset
+df_california <- read.csv("california.dat", comment.char="@", header=F)
+
+#Funcion para poner nombre a las columnas
+add_colnames <- function(df) {
+	colnames(df) <- c("Longitude", "Latitude", "HousingMedianAge",
+	"TotalRooms", "TotalBedrooms", "Population", "Households",
+	"MedianIncome", "MedianHouseValue")
+	df
+}
+
+df_california <- add_colnames(df_california)
+
+
+# Modelos lineales simples
+lm_Longitude <- lm(MedianHouseValue ~ Longitude, data = df_california)
+lm_Latitude <- lm(MedianHouseValue ~ Latitude, data = df_california)
+lm_HousingMedianAge <- lm(MedianHouseValue ~ HousingMedianAge, data = df_california)
+lm_TotalRooms <- lm(MedianHouseValue ~ TotalRooms, data = df_california)
+lm_TotalBedrooms <- lm(MedianHouseValue ~ TotalBedrooms, data = df_california)
+lm_Population <- lm(MedianHouseValue ~ Population, data = df_california)
+lm_Households <- lm(MedianHouseValue ~ Households, data = df_california)
+lm_MedianIncome <- lm(MedianHouseValue ~ MedianIncome, data = df_california)
+
+
+
+
+
+summary(lm_Longitude)
+summary(lm_Latitude)
+summary(lm_HousingMedianAge)
+summary(lm_TotalRooms)
+summary(lm_TotalBedrooms)
+summary(lm_Population)
+summary(lm_Households)
+summary(lm_MedianIncome)
+
+
+#Represento graficamente los modelos
+plot(MedianHouseValue ~ Longitude, data = df_california)
+abline(lm_Longitude,col="red")
+
+plot(MedianHouseValue ~ Latitude, data = df_california)
+abline(lm_Latitude,col="red")
+
+plot(MedianHouseValue ~ HousingMedianAge, data = df_california)
+abline(lm_HousingMedianAge,col="red")
+
+plot(MedianHouseValue ~ TotalRooms, data = df_california)
+abline(lm_TotalRooms,col="red")
+
+plot(MedianHouseValue ~ TotalBedrooms, data = df_california)
+abline(lm_TotalBedrooms,col="red")
+
+plot(MedianHouseValue ~ Population, data = df_california)
+abline(lm_Population,col="red")
+
+plot(MedianHouseValue ~ Households, data = df_california)
+abline(lm_Households,col="red")
+
+plot(MedianHouseValue ~ MedianIncome, data = df_california)
+abline(lm_MedianIncome,col="red")
+
+
+
+# Funcion para aplicar lm a 5-fold
+run_lm_fold <- function(i, x, model, tt = "test") {
+	# Cargar conjuntos de train
+	file <- paste(x, "-5-", i, "tra.dat", sep="")
+	x_tra <- read.csv(file, comment.char="@")
+	
+	# Cargar conjuntos de test
+	file <- paste(x, "-5-", i, "tst.dat", sep="")
+	x_tst <- read.csv(file, comment.char="@")
+	
+	
+	
+	x_tra <- add_colnames(x_tra)
+	x_tst <- add_colnames(x_tst)
+	
+	
+	if (tt == "train") {
+		test <- x_tra
+	} else {
+		test <- x_tst
+	}
+	
+	# Entrenar el modelo sobre el conjunto de train
+	formula <- terms(model)
+	model_eval <- lm(formula=formula, data=x_tra)
+	
+	# RMSE sobre test
+	yprime <- predict(model_eval, test)
+	#MSE
+	sum(abs(test$MedianHouseValue - yprime)^2)/length(yprime) 
+}
+
+
+
+#Procedo a evaluar todos los modelos lineales
+cat('RMSE de 5-fold sobre MedianIncome:', mean(sapply(1:5, run_lm_fold, 'california', lm_MedianIncome), fill=T))
+
+cat('RMSE de 5-fold sobre Latitude:', mean(sapply(1:5, run_lm_fold, 'california', lm_Latitude), fill=T))
+
+cat('RMSE de 5-fold sobre TotalRooms:', mean(sapply(1:5, run_lm_fold, 'california', lm_TotalRooms), fill=T))
+
+cat('RMSE de 5-fold sobre HousingMedianAge:', mean(sapply(1:5, run_lm_fold, 'california', lm_HousingMedianAge), fill=T))
+
+cat('RMSE de 5-fold sobre Households:', mean(sapply(1:5, run_lm_fold, 'california', lm_Households), fill=T))
+
+
+
+# Modelo lineal multiple con todas las variables
+fit_mult1 <- lm(MedianHouseValue ~ ., data=df_california)
+summary(fit_mult1)
+
+cat('Media RMSE del modelo lineal multiple sobre 5-fold:', mean(sapply(1:5, run_lm_fold, 'california', fit_mult1), fill=T))
+
+
+#Modelo lineal multiple sin Longitude
+fit_mult2 <- lm(MedianHouseValue ~ . -Longitude , data=df_california)
+summary(fit_mult2)
+
+cat('Media RMSE del modelo lineal multiple sobre 5-fold:', mean(sapply(1:5, run_lm_fold, 'california', fit_mult2), fill=T))
+
+
+#Modelo lineal multiple sin Population
+fit_mult3 <- lm(MedianHouseValue ~ . -Population , data=df_california)
+summary(fit_mult3)
+
+cat('Media RMSE del modelo lineal multiple sobre 5-fold:', mean(sapply(1:5, run_lm_fold, 'california', fit_mult3), fill=T))
+
+
+#Modelo lineal multiple sin TotalBedrooms
+fit_mult4 <- lm(MedianHouseValue ~ . -TotalBedrooms , data=df_california)
+summary(fit_mult4)
+
+cat('Media RMSE del modelo lineal multiple sobre 5-fold:', mean(sapply(1:5, run_lm_fold, 'california', fit_mult4), fill=T))
+
+
+#Modelo lineal multiple MedianIncome^2
+fit_mult5 <- lm(MedianHouseValue ~ . +I(MedianIncome^2) , data=df_california)
+summary(fit_mult5)
+
+cat('Media RMSE del modelo lineal multiple sobre 5-fold:', mean(sapply(1:5, run_lm_fold, 'california', fit_mult5), fill=T))
+
+#Modelo lineal multiple MedianIncome^4
+fit_mult6 <- lm(MedianHouseValue ~ . +I(MedianIncome^4) , data=df_california)
+summary(fit_mult6)
+
+cat('Media RMSE del modelo lineal multiple sobre 5-fold:', mean(sapply(1:5, run_lm_fold, 'california', fit_mult6), fill=T))
+
+#Modelo lineal multiple I(MedianIncome^4)*Latitude*TotalRooms
+fit_mult7 <- lm(MedianHouseValue ~ . +I(MedianIncome^4)*Latitude*TotalRooms , data=df_california)
+summary(fit_mult7)
+
+cat('Media RMSE del modelo lineal multiple sobre 5-fold:', mean(sapply(1:5, run_lm_fold, 'california', fit_mult7), fill=T))
+
+
+#Modelo lineal multiple I(MedianIncome^4)*TotalRooms
+fit_mult8 <- lm(MedianHouseValue ~ . +I(MedianIncome^4)*TotalRooms , data=df_california)
+summary(fit_mult8)
+
+cat('Media RMSE del modelo lineal multiple sobre 5-fold:', mean(sapply(1:5, run_lm_fold, 'california', fit_mult8), fill=T))
+
+
+#Modelo lineal multiple I(MedianIncome^4)*TotalRooms*HousingMedianAge*Households
+fit_mult9 <- lm(MedianHouseValue ~ . +I(MedianIncome^4)*TotalRooms*HousingMedianAge*Households , data=df_california)
+summary(fit_mult9)
+
+cat('Media RMSE del modelo lineal multiple sobre 5-fold:', mean(sapply(1:5, run_lm_fold, 'california', fit_mult9), fill=T))
+
+
+#Modelo lineal multiple MedianIncome*TotalRooms*HousingMedianAge*Households 
+fit_mult10 <- lm(MedianHouseValue ~ . +MedianIncome*TotalRooms*HousingMedianAge*Households , data=df_california)
+summary(fit_mult10)
+
+cat('Media RMSE del modelo lineal multiple sobre 5-fold:', mean(sapply(1:5, run_lm_fold, 'california', fit_mult10), fill=T))
+
+
+
+#Funcion para aplicar knn sobre 5-folds
+run_knn_fold <- function(i, x, formula, k,  tt = "test") {
+	# Cargar conjuntos de train
+	file <- paste(x, "-5-", i, "tra.dat", sep="")
+	x_tra <- read.csv(file, comment.char="@")
+	
+	# Cargar conjuntos de test
+	file <- paste(x, "-5-", i, "tst.dat", sep="")
+	x_tst <- read.csv(file, comment.char="@")
+	
+	
+	
+	x_tra <- add_colnames(x_tra)
+	x_tst <- add_colnames(x_tst)
+	
+	
+	if (tt == "train") {
+		test <- x_tra
+	} else {
+		test <- x_tst
+	}
+	
+	# Entrenar el modelo sobre el conjunto de train
+	model_eval <- kknn(formula=formula, x_tra, test, k=k)
+	
+	# RMSE sobre test
+	yprime <- model_eval$fitted.values
+	#MSE
+	sum(abs(test$MedianHouseValue - yprime)^2)/length(yprime) 
+}
+
+
+#Pruebo con diferentes valores de k
+cat('RMSE del modelo k-NN sobre 5-fold:', sapply(1:5, run_knn_fold, 'california', MedianHouseValue ~ . +MedianIncome*TotalRooms*HousingMedianAge*Households, k = 5), fill=T)
+cat('Meida RMSE del modelo k-NN sobre 5-fold:', mean(sapply(1:5, run_knn_fold, 'california', MedianHouseValue ~ . +MedianIncome*TotalRooms*HousingMedianAge*Households, k = 5), fill=T))
+
+
+cat('RMSE del modelo k-NN sobre 5-fold:', sapply(1:5, run_knn_fold, 'california', MedianHouseValue ~ . +MedianIncome*TotalRooms*HousingMedianAge*Households, k = 7), fill=T)
+cat('Meida RMSE del modelo k-NN sobre 5-fold:', mean(sapply(1:5, run_knn_fold, 'california', MedianHouseValue ~ . +MedianIncome*TotalRooms*HousingMedianAge*Households, k = 7), fill=T))
+
+
+cat('RMSE del modelo k-NN sobre 5-fold:', sapply(1:5, run_knn_fold, 'california', MedianHouseValue ~ . +MedianIncome*TotalRooms*HousingMedianAge*Households, k = 10), fill=T)
+cat('Meida RMSE del modelo k-NN sobre 5-fold:', mean(sapply(1:5, run_knn_fold, 'california', MedianHouseValue ~ . +MedianIncome*TotalRooms*HousingMedianAge*Households, k = 10), fill=T))
+
+
+cat('RMSE del modelo k-NN sobre 5-fold:', sapply(1:5, run_knn_fold, 'california', MedianHouseValue ~ . +MedianIncome*TotalRooms*HousingMedianAge*Households, k = 20), fill=T)
+cat('Meida RMSE del modelo k-NN sobre 5-fold:', mean(sapply(1:5, run_knn_fold, 'california', MedianHouseValue ~ . +MedianIncome*TotalRooms*HousingMedianAge*Households, k = 20), fill=T))
+
+
+cat('RMSE del modelo k-NN sobre 5-fold:', sapply(1:5, run_knn_fold, 'california', MedianHouseValue ~ . +MedianIncome*TotalRooms*HousingMedianAge*Households, k = 25), fill=T)
+cat('Meida RMSE del modelo k-NN sobre 5-fold:', mean(sapply(1:5, run_knn_fold, 'california', MedianHouseValue ~ . +MedianIncome*TotalRooms*HousingMedianAge*Households, k = 25), fill=T))
+
+
+cat('RMSE del modelo k-NN sobre 5-fold:', sapply(1:5, run_knn_fold, 'california', MedianHouseValue ~ . +MedianIncome*TotalRooms*HousingMedianAge*Households, k = 50), fill=T)
+cat('Meida RMSE del modelo k-NN sobre 5-fold:', mean(sapply(1:5, run_knn_fold, 'california', MedianHouseValue ~ . +MedianIncome*TotalRooms*HousingMedianAge*Households, k = 50), fill=T))
+
+
+#knn sobre modelo con todas las variables
+cat('RMSE del modelo k-NN sobre 5-fold:', sapply(1:5, run_knn_fold, 'california', MedianHouseValue ~ ., k = 20), fill=T)
+cat('Meida RMSE del modelo k-NN sobre 5-fold:', mean(sapply(1:5, run_knn_fold, 'california', MedianHouseValue ~ ., k = 20), fill=T))
+
+
+
+
+# Comparativa LM, k-NN y M5'
+#leemos la tabla con los errores medios de test
+resultados <- read.csv("regr_test_alumnos.csv")
+tablatst <- cbind(resultados[,2:dim(resultados)[2]])
+colnames(tablatst) <- names(resultados)[2:dim(resultados)[2]]
+rownames(tablatst) <- resultados[,1]
+
+
+#Calculo mis valores de LM y KNN para aniadirlos en la tabla
+media_lm <-mean(sapply(1:5, run_lm_fold, 'california', fit_mult1), fill=T)
+media_knn <- mean(sapply(1:5, run_knn_fold, 'california', MedianHouseValue ~., k = 20), fill=T)
+
+tablatst["california", 1] <- media_lm
+tablatst["california", 2] <- media_knn
+
+#Comparar lm con knn con Wilcoxon
+# + 0.1 porque wilcox R falla para valores == 0 en la tabla
+difs <- (tablatst[,1] - tablatst[,2]) / tablatst[,1]
+wilc_1_2 <- cbind(ifelse (difs<0, abs(difs)+0.1, 0+0.1),
+ifelse (difs>0, abs(difs)+0.1, 0+0.1))
+
+colnames(wilc_1_2) <- c(colnames(tablatst)[1], colnames(tablatst)[2])
+head(wilc_1_2)
+
+LMvsKNNtst <- wilcox.test(wilc_1_2[,1], wilc_1_2[,2], alternative = "two.sided", paired=TRUE)
+Rmas <- LMvsKNNtst$statistic
+pvalue <- LMvsKNNtst$p.value
+
+LMvsKNNtst <- wilcox.test(wilc_1_2[,2], wilc_1_2[,1], alternative = "two.sided", paired=TRUE)
+Rmenos <- LMvsKNNtst$statistic
+
+
+cat('Test modelo lineal (R+) vs modelo k-NN:(R-)', fill=T)
+cat('Valor R+: ',Rmas, fill=T)
+cat('Valor R-: ',Rmenos, fill=T)
+cat('p-value del test: ',pvalue, fill=T)
+
+
+test_friedman <- friedman.test(as.matrix(tablatst))
+test_friedman
+
+tam <- dim(tablatst)
+groups <- rep(1:tam[2], each=tam[1])
+pairwise.wilcox.test(as.matrix(tablatst), groups, p.adjust = "holm", paired = TRUE)
+\end{lstlisting}

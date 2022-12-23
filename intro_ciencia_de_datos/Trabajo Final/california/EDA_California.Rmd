@@ -122,6 +122,18 @@ ggplot(california, aes(x=MedianHouseValue)) +
 
 
 
+```{r}
+shapiro.test(sample(california[ , 'Longitude'], 5000))
+shapiro.test(sample(california[ , 'Latitude'], 5000))
+shapiro.test(sample(california[ , 'HousingMedianAge'], 5000))
+shapiro.test(sample(california[ , 'TotalRooms'], 5000))
+shapiro.test(sample(california[ , 'TotalBedrooms'], 5000))
+shapiro.test(sample(california[ , 'Population'], 5000))
+shapiro.test(sample(california[ , 'Households'], 5000))
+shapiro.test(sample(california[ , 'MedianIncome'], 5000))
+```
+
+
 
 
 
@@ -232,7 +244,7 @@ ggplot(california_new, aes(x = Longitude, y = Latitude, color = MedianHouseValue
 ```
 ```{r}
 ggplot(california_new, aes(x = Population, y = MedianHouseValue))+
-  geom_point() 
+  geom_point(color = "blue") 
 ```
 
 

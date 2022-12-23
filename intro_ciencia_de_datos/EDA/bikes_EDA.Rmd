@@ -9,12 +9,125 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## Bikes EDA
+Se cargan los paquetes necesarios
+```{r}
+library(tidyverse)
+library(Amelia)
+
+```
+
+
+Se leen de entrada el dataset con el que se trabaja.
+```{r}
+train <- read.csv("train.csv")
+test <- read.csv("test.csv")
+
+# Se observan los valores que tenemos
+head(train)
+```
+
+Se observan las diferentes variables que conforman este dataset. Se trabajan con 12 variables, de las cuales las 9 primeras son independientes y las tres restantes ("casual", "registered" y "count") son dependientes.
+```{r}
+# Podemos ver las variables que tenemos disponibles
+names(train)
+str(train)
+```
+Si nos fijamos en el tipo de las variables podemos determinar que de las variables independientes 1 de ellas es de tipo carácter, 5 son valores enteros y las 3 restantes son numericas.
+Con el caso de las dependientes, las tres son de tipo entero.
+
+
+En el caso del conjunto test solamente tenemos las variables independientes
+```{r}
+names(test)
+str(test)
+```
+
+
+
+El siguiente paso será fijarse en la existencia de posibles valores nulos
+```{r}
+#Paquete Amelia
+missmap(train, main="Missing Map")  
+missmap(test, main="Missing Map")  
+```
+Queda claro que no existe ningún valor nulo en el dataset tratado.
+
+
+Para profundizar el estudio de las variables independientes, unimos test y train
+```{r}
+# Conjunto train sin las var dependientes
+train_indep <- train[ , colnames(test)] 
+
+indep <- rbind(train_indep, test)
+```
 
 ```{r}
-data <- read.csv("train.csv")
-# Podemos ver las variables que tenemos disponibles
-names(data)
-# Y un poco los valores que tenemos
-head(data)
+indep %>%
+select_if(is.numeric) %>% 
+                  pivot_longer(everything(),names_to="var",values_to="value")%>%
+                  ggplot(aes(x = value)) +
+                    geom_histogram(bins=10) +
+                    facet_wrap(~ var, ncol=4) +
+                    labs(title="Distribuciones variable", x="Valores", y="Número de casos")
+```
+Centremonos en los casos de las variables "atemp", "humidity", "temp" y "windspeed", las 4 que más posibilidades a ser una distribución normal existen.
+```{r}
+indep %>%
+  dplyr::select(atemp) %>% 
+                  pivot_longer(everything(),names_to="var",values_to="value")%>%
+                  ggplot(aes(x = value)) +
+                    geom_histogram(bins=10) +
+                    facet_wrap(~ var, ncol=4) +
+                    labs(title="Distribuciones variable", x="Valores", y="Número de casos")
+
+indep %>%
+  dplyr::select(temp) %>% 
+                  pivot_longer(everything(),names_to="var",values_to="value")%>%
+                  ggplot(aes(x = value)) +
+                    geom_histogram(bins=10) +
+                    facet_wrap(~ var, ncol=4) +
+                    labs(title="Distribuciones variable", x="Valores", y="Número de casos")
+
+indep %>%
+  dplyr::select(humidity) %>% 
+                  pivot_longer(everything(),names_to="var",values_to="value")%>%
+                  ggplot(aes(x = value)) +
+                    geom_histogram(bins=10) +
+                    facet_wrap(~ var, ncol=4) +
+                    labs(title="Distribuciones variable", x="Valores", y="Número de casos")
+
+indep %>%
+  dplyr::select(windspeed) %>% 
+                  pivot_longer(everything(),names_to="var",values_to="value")%>%
+                  ggplot(aes(x = value)) +
+                    geom_histogram(bins=10) +
+                    facet_wrap(~ var, ncol=4) +
+                    labs(title="Distribuciones variable", x="Valores", y="Número de casos")
+```
+
+```{r}
+#El tamaño max que acepta es de 5000
+shapiro.test(sample(indep[ , 'atemp'], 5000))
+shapiro.test(sample(indep[ , 'temp'], 5000))
+shapiro.test(sample(indep[ , 'humidity'], 5000))
+shapiro.test(sample(indep[ , 'windspeed'], 5000))
+```
+Si el valor p es menor que 0,05, rechazamos la hipótesis nula de que no hay diferencia entre las medias y concluimos que sí existe una diferencia significativa. Si el valor p es mayor que 0,05, no podemos concluir que existe una diferencia significativa.
+En este caso en las 4 llegamos a la conclusión de que no son distribucciones normales.
+
+
+
+
+Centrandonos en las otras variables se observa que ...
+
+Convertimos las variables numericas en categoricas
+```{r}
+train$day_type="" 
+train$day_type[train$holiday==0 & train$workingday==0]="weekend" 
+train$day_type[train$holiday==1]="holiday"  
+train$day_type[train$holiday==0 & train$workingday==1]="working day"
+
+train$weekend=0 
+train$weekend[train$day=="Sunday" | train$day=="Saturday" ]=1
 ```
 

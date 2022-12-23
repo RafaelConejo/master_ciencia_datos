@@ -7,6 +7,7 @@ date: "2022-11-12"
 ```{r}
 library(moments)
 library(ggplot2)
+library(tidyverse)
 ```
 
 
@@ -45,7 +46,7 @@ rownames(bupa) <- NULL
 
 
 ```{r}
-#Medidad importantes
+#Medidadas importantes
 summary(bupa)
 ```
 
@@ -97,8 +98,26 @@ ggplot(bupa, aes(x=gammagt)) +
 
 
 ggplot(bupa, aes(x=drinks)) +
-    geom_histogram()
+    geom_histogram(bins = 5)
 ```
+
+
+
+
+```{r}
+shapiro.test(sample(bupa[ , 'mcv']))
+shapiro.test(sample(bupa[ , 'alkphos']))
+shapiro.test(sample(bupa[ , 'sgpt']))
+shapiro.test(sample(bupa[ , 'sgot']))
+shapiro.test(sample(bupa[ , 'gammagt']))
+```
+
+
+
+
+
+
+
 
 
 
@@ -108,16 +127,20 @@ ggplot(bupa, aes(x=drinks)) +
 
 Outliers izquierda
 ```{r}
-ggplot(bupa, aes(x = mcv  , y = drinks, color = mcv > (quantile(mcv, 0.25) - IQR(mcv)*1.5) )) +
+ggplot(bupa, aes(x = mcv  , y = drinks, color = mcv < (quantile(mcv, 0.25) - IQR(mcv)*1.5) )) +
     geom_point()  +
   labs(title="Outliers mcv", color="Outliers")
 
 
-ggplot(bupa, aes(x = sgot  , y = drinks, color = sgot > (quantile(sgot, 0.25) - IQR(sgot)*1.5) )) +
+ggplot(bupa, aes(x = sgot  , y = drinks, color = sgot < (quantile(sgot, 0.25) - IQR(sgot)*1.5) )) +
     geom_point()  +
   labs(title="Outliers sgot", color="Outliers")
 
 
+```
+```{r}
+bupa[which(bupa$mcv < (quantile(bupa$mcv, 0.25) - IQR(bupa$mcv)*1.5)),]
+bupa[which(bupa$sgot < (quantile(bupa$sgot, 0.25) - IQR(bupa$sgot)*1.5)),]
 ```
 
 
@@ -145,3 +168,107 @@ ggplot(bupa, aes(x = gammagt  , y = drinks, color = gammagt > (quantile(gammagt,
   labs(title="Outliers gammagt", color="Outliers")
 
 ```
+
+
+
+#Preparo la variable dependiente
+```{r}
+unique(bupa$drinks)
+```
+
+
+```{r}
+bupa$drinks[bupa$drinks <= 5] <- 0
+bupa$drinks[bupa$drinks > 5] <- 1
+
+summary(bupa)
+```
+
+```{r}
+#Separo según la variable selector
+bupa_train <- bupa %>% filter(selector == 2)
+bupa_test <- bupa %>% filter(selector == 1)
+```
+
+```{r}
+dim(bupa_train)
+dim(bupa_test)
+```
+```{r}
+bupa_train %>% count(drinks)
+bupa_test %>% count(drinks)
+```
+
+
+
+
+
+
+
+
+
+```{r}
+no_label_bupa <- bupa %>% select(c(-drinks, -selector))
+```
+
+
+Matriz de correlaciones
+```{r}
+corr_matrix <- cor(no_label_bupa, method = "kendall")
+corrplot(corr_matrix, method = "num", tl.col = "black")
+```
+
+
+
+
+
+```{r}
+pairs(bupa)
+```
+```{r}
+#Hipotesis 1
+ggplot(bupa, aes(x = alkphos, y = mcv, color = drinks))+
+  geom_point() 
+
+ggplot(bupa, aes(x = sgpt, y = mcv, color = drinks))+
+  geom_point() 
+
+ggplot(bupa, aes(x = sgot, y = mcv, color = drinks))+
+  geom_point() 
+
+ggplot(bupa, aes(x = gammagt, y = mcv, color = drinks))+
+  geom_point() 
+```
+
+
+
+```{r}
+#hipotesis 2
+ggplot(bupa, aes(x = alkphos, y = sgpt))+
+  geom_point() 
+
+ggplot(bupa, aes(x = alkphos, y = sgot))+
+  geom_point() 
+
+ggplot(bupa, aes(x = alkphos, y = gammagt))+
+  geom_point() 
+
+
+ggplot(bupa, aes(x = sgpt, y = sgot))+
+  geom_point() 
+
+ggplot(bupa, aes(x = sgpt, y = gammagt))+
+  geom_point() 
+
+
+ggplot(bupa, aes(x = sgot, y = gammagt))+
+  geom_point() 
+```
+
+
+```{r}
+ggplot(bupa, aes(x = sgot))+
+  geom_histogram() +
+  facet_wrap( ~ drinks)
+```
+

@@ -1,4 +1,9 @@
 #1
+L = [[0,0]] * 5
+L[2][0] = 7
+print(L) 
+
+
 def contar_letras(palabra, letra):
     cont = 0
     for i in palabra:

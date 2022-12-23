@@ -49,7 +49,7 @@ que cambie el level "p" a "w"
 z <- factor(c("p", "q", "p", "r", "q"))
 levels(z) <- c('w','q','r')
 #ó
-levels(z)[levels(z=='p')] <- 'w'
+levels(z)[levels(z) =='p'] <- 'w'
 ```
 
 * Considera el factor result \<- factor(c("Positivo", "Positivo",

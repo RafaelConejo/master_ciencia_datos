@@ -5,9 +5,33 @@
 \contentsline {section}{\numberline {2.2}Planteamiento de hipótesis}{8}{section.2.2}%
 \contentsline {section}{\numberline {2.3}Procesamiento de los datos}{8}{section.2.3}%
 \contentsline {subsection}{\numberline {2.3.1}Análisis de las variables}{9}{subsection.2.3.1}%
-\contentsline {subsection}{\numberline {2.3.2}Análisis de las relaciones entre variables}{14}{subsection.2.3.2}%
-\contentsline {section}{\numberline {2.4}Análisis de las relaciones entre variables}{14}{section.2.4}%
-\contentsline {section}{\numberline {2.5}Comprobación de hipótesis planteadas}{14}{section.2.5}%
-\contentsline {chapter}{\numberline {3}Análisis Exploratorio de los Datos (EDA). Dataset de clasificación: Bupa}{17}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Descripción del dataset: Bupa}{17}{section.3.1}%
-\contentsline {chapter}{Referencias Bibliográficas}{18}{section.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}Análisis de valores anómalos}{23}{subsection.2.3.2}%
+\contentsline {section}{\numberline {2.4}Análisis de las relaciones entre variables}{24}{section.2.4}%
+\contentsline {section}{\numberline {2.5}Comprobación de hipótesis planteadas}{25}{section.2.5}%
+\contentsline {chapter}{\numberline {3}Análisis Exploratorio de los Datos (EDA). Dataset de clasificación: Bupa}{29}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Descripción del dataset: Bupa}{29}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Planteamiento de hipótesis}{30}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Procesamiento de los datos}{30}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Análisis de las variables independientes}{31}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}Análisis de las variable dependiente}{38}{subsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.3.3}Análisis de valores anómalos}{40}{subsection.3.3.3}%
+\contentsline {section}{\numberline {3.4}Análisis de las relaciones entre variables}{42}{section.3.4}%
+\contentsline {section}{\numberline {3.5}Comprobación de hipótesis planteadas}{43}{section.3.5}%
+\contentsline {chapter}{\numberline {4}Regresión}{47}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Introducción}{47}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Elaborar modelos lineales simples.}{47}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Elaborar modelos regresión lineal múltiple}{50}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Aplicar el algoritmo k-NN para regresión}{57}{section.4.4}%
+\contentsline {section}{\numberline {4.5}Comparar los resultados de los dos algoritmos de regresión múltiple}{58}{section.4.5}%
+\contentsline {chapter}{\numberline {5}Clasificación}{61}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Introducción}{61}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Utilizar el algoritmo k-NN probando con diferentes valores de k}{61}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Utilizar el algoritmo LDA para clasificar.}{62}{section.5.3}%
+\contentsline {section}{\numberline {5.4}Utilizar el algoritmo QDA para clasificar.}{63}{section.5.4}%
+\contentsline {section}{\numberline {5.5}Comparar los resultados de los tres algoritmos}{65}{section.5.5}%
+\contentsline {chapter}{\numberline {6}Apéndice}{67}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Apéndice A. Código EDA dataset de regresión 'California'}{67}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Apéndice B. Código EDA dataset de clasificación 'Bupa'}{72}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Apéndice C. Código Regresión sobre California}{76}{section.6.3}%
+\contentsline {section}{\numberline {6.4}Apéndice D. Código Clasificación sobre Bupa}{83}{section.6.4}%
+\contentsline {chapter}{Referencias Bibliográficas}{89}{lstnumber.-4.251}%

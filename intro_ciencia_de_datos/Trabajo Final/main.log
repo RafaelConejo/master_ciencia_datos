@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.10) (preloaded format=pdflatex 2022.11.11)  15 NOV 2022 16:40
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.10) (preloaded format=pdflatex 2022.11.11)  12 DEC 2022 18:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -523,57 +523,83 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \c@teorema=\count312
 
+(C:\Users\rafac\AppData\Local\Programs\MiKTeX\tex/latex/listings\listings.sty
+\lst@mode=\count313
+\lst@gtempboxa=\box108
+\lst@token=\toks36
+\lst@length=\count314
+\lst@currlwidth=\dimen188
+\lst@column=\count315
+\lst@pos=\count316
+\lst@lostspace=\dimen189
+\lst@width=\dimen190
+\lst@newlines=\count317
+\lst@lineno=\count318
+\lst@maxwidth=\dimen191
+
+(C:\Users\rafac\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstmisc.sty
+File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
+\c@lstnumber=\count319
+\lst@skipnumbers=\count320
+\lst@framebox=\box109
+)
+(C:\Users\rafac\AppData\Local\Programs\MiKTeX\tex/latex/listings\listings.cfg
+File: listings.cfg 2020/03/24 1.8d listings configuration
+))
+Package: listings 2020/03/24 1.8d (Carsten Heinz)
+
 (C:\Users\rafac\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdf
 tex.def
 File: l3backend-pdftex.def 2022-09-28 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count313
-\l__pdf_internal_box=\box108
+\l__color_backend_stack_int=\count321
+\l__pdf_internal_box=\box110
 ) (main.aux
 LaTeX Info: Redefining \. on input line 22.
 LaTeX Info: Redefining \% on input line 22.
 )
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
+Package caption Info: listings package is loaded.
 Package caption Info: wrapfig package is loaded.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Info: Redefining \. on input line 31.
-LaTeX Info: Redefining \% on input line 31.
+LaTeX Info: Redefining \. on input line 35.
+LaTeX Info: Redefining \% on input line 35.
 
 (C:\Users\rafac\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mk
 ii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count314
-\scratchdimen=\dimen188
-\scratchbox=\box109
-\nofMPsegments=\count315
-\nofMParguments=\count316
-\everyMPshowfont=\toks36
-\MPscratchCnt=\count317
-\MPscratchDim=\dimen189
-\MPnumerator=\count318
-\makeMPintoPDFobject=\count319
-\everyMPtoPDFconversion=\toks37
+\scratchcounter=\count322
+\scratchdimen=\dimen192
+\scratchbox=\box111
+\nofMPsegments=\count323
+\nofMParguments=\count324
+\everyMPshowfont=\toks37
+\MPscratchCnt=\count325
+\MPscratchDim=\dimen193
+\MPnumerator=\count326
+\makeMPintoPDFobject=\count327
+\everyMPtoPDFconversion=\toks38
 )
 (C:\Users\rafac\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-b
 ase.sty
@@ -619,14 +645,15 @@ File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring OFF on input line 31.
+Package hyperref Info: Link coloring OFF on input line 35.
 (main.out) (main.out)
 \@outlinefile=\write3
 \openout3 = `main.out'.
 
+\c@lstlisting=\count328
  (sections/00-Portada.tex
 \centeroffset=\skip76
-<figures/logo.jpg, id=50, 729.72626pt x 230.8625pt>
+<figures/logo.jpg, id=147, 729.72626pt x 230.8625pt>
 File: figures/logo.jpg Graphic file (type jpg)
 <use figures/logo.jpg>
 Package pdftex.def Info: figures/logo.jpg  used on input line 12.
@@ -643,127 +670,947 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 30.
 (C:\Users\rafac\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-<figures/logo2.png, id=51, 835.62187pt x 385.44pt>
-File: figures/logo2.png Graphic file (type png)
-<use figures/logo2.png>
-Package pdftex.def Info: figures/logo2.png  used on input line 50.
-(pdftex.def)             Requested size: 119.50279pt x 55.11984pt.
-
 [1
 
 
 {C:/Users/rafac/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <./figures/lo
-go.jpg> <./figures/logo2.png>]) [2
+go.jpg>]) [2
 
 ] (main.toc
 LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
-)
+
+Overfull \hbox (1.81009pt too wide) in paragraph at lines 25--25
+ [][] [][]\OT1/cmr/m/n/12 Comparar los re-sul-ta-dos de los dos al-go-rit-mos d
+e re-gre-si^^Son m^^Sulti- 
+ []
+
+[3
+
+])
 \tf@toc=\write4
 \openout4 = `main.toc'.
 
- [3
-
-] (sections/01-intro.tex
-[4
-
-]
+ [4] (sections/01-intro.tex
 Cap\'{\i }tulo 1.
-) [5] (sections/02-california.tex [6
+
+Underfull \hbox (badness 10000) in paragraph at lines 2--3
+
+ []
+
+) (sections/02-california.tex [5
+
+] [6
 
 ]
 Cap\'{\i }tulo 2.
 [7]
-Overfull \hbox (83.12866pt too wide) in paragraph at lines 37--38
-[]\OT1/cmr/m/n/12 urlhttps://github.com/sonarsushant/California-House-Price-Pre
-diction/blob/master/EDA 
+Underfull \hbox (badness 10000) in paragraph at lines 44--45
+
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 47--48
+Underfull \hbox (badness 10000) in paragraph at lines 51--52
 
  []
 
 [8]
+<figures/eda_box_1.png, id=234, 528.47438pt x 328.97906pt>
+File: figures/eda_box_1.png Graphic file (type png)
+<use figures/eda_box_1.png>
+Package pdftex.def Info: figures/eda_box_1.png  used on input line 82.
+(pdftex.def)             Requested size: 278.83578pt x 173.57498pt.
 
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 62.
 
-
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 95.
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [9]
+Underfull \hbox (badness 10000) in paragraph at lines 88--89
 
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 122.
+ []
+
+<figures/eda_hist_1.png, id=241, 526.21594pt x 325.215pt>
+File: figures/eda_hist_1.png Graphic file (type png)
+<use figures/eda_hist_1.png>
+Package pdftex.def Info: figures/eda_hist_1.png  used on input line 95.
+(pdftex.def)             Requested size: 278.83578pt x 172.33334pt.
+[10 <./figures/eda_box_1.png> <./figures/eda_hist_1.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 121--122
+
+ []
+
+<figures/eda_box_2.png, id=250, 586.44093pt x 335.75438pt>
+File: figures/eda_box_2.png Graphic file (type png)
+<use figures/eda_box_2.png>
+Package pdftex.def Info: figures/eda_box_2.png  used on input line 127.
+(pdftex.def)             Requested size: 278.83578pt x 159.63867pt.
+[11 <./figures/eda_box_2.png>]
+<figures/eda_hist_2.png, id=258, 554.82281pt x 325.215pt>
+File: figures/eda_hist_2.png Graphic file (type png)
+<use figures/eda_hist_2.png>
+Package pdftex.def Info: figures/eda_hist_2.png  used on input line 134.
+(pdftex.def)             Requested size: 278.83578pt x 163.44077pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 139--140
+
+ []
+
+[12 <./figures/eda_hist_2.png>]
+<figures/eda_box_3.png, id=266, 547.2947pt x 327.47343pt>
+File: figures/eda_box_3.png Graphic file (type png)
+<use figures/eda_box_3.png>
+Package pdftex.def Info: figures/eda_box_3.png  used on input line 166.
+(pdftex.def)             Requested size: 278.83578pt x 166.84435pt.
+<figures/eda_hist_3.png, id=267, 539.01375pt x 322.95656pt>
+File: figures/eda_hist_3.png Graphic file (type png)
+<use figures/eda_hist_3.png>
+Package pdftex.def Info: figures/eda_hist_3.png  used on input line 172.
+(pdftex.def)             Requested size: 278.83578pt x 167.07106pt.
+ [13 <./figures/eda_box_3.png> <./figures/eda_hist_3.png>]
+<figures/eda_box_4.png, id=278, 532.23843pt x 324.46219pt>
+File: figures/eda_box_4.png Graphic file (type png)
+<use figures/eda_box_4.png>
+Package pdftex.def Info: figures/eda_box_4.png  used on input line 204.
+(pdftex.def)             Requested size: 278.83578pt x 169.98872pt.
+<figures/eda_hist_4.png, id=279, 534.49687pt x 322.20375pt>
+File: figures/eda_hist_4.png Graphic file (type png)
+<use figures/eda_hist_4.png>
+Package pdftex.def Info: figures/eda_hist_4.png  used on input line 210.
+(pdftex.def)             Requested size: 278.83578pt x 168.09264pt.
+ [14 <./figures/eda_box_4.png> <./figures/eda_hist_4.png>]
+<figures/eda_box_5.png, id=288, 537.50812pt x 325.96782pt>
+File: figures/eda_box_5.png Graphic file (type png)
+<use figures/eda_box_5.png>
+Package pdftex.def Info: figures/eda_box_5.png  used on input line 240.
+(pdftex.def)             Requested size: 278.83578pt x 169.09637pt.
+ [15 <./figures/eda_box_5.png>]
+<figures/eda_hist_5.png, id=296, 536.0025pt x 324.46219pt>
+File: figures/eda_hist_5.png Graphic file (type png)
+<use figures/eda_hist_5.png>
+Package pdftex.def Info: figures/eda_hist_5.png  used on input line 247.
+(pdftex.def)             Requested size: 278.83578pt x 168.78566pt.
+ [16 <./figures/eda_hist_5.png>]
+<figures/eda_box_6.png, id=304, 536.75531pt x 319.94531pt>
+File: figures/eda_box_6.png Graphic file (type png)
+<use figures/eda_box_6.png>
+Package pdftex.def Info: figures/eda_box_6.png  used on input line 277.
+(pdftex.def)             Requested size: 278.83578pt x 166.20653pt.
+<figures/eda_hist_6.png, id=305, 540.51938pt x 326.72063pt>
+File: figures/eda_hist_6.png Graphic file (type png)
+<use figures/eda_hist_6.png>
+Package pdftex.def Info: figures/eda_hist_6.png  used on input line 283.
+(pdftex.def)             Requested size: 278.83578pt x 168.54965pt.
+ [17 <./figures/eda_box_6.png> <./figures/eda_hist_6.png>]
+<figures/eda_box_7.png, id=315, 538.26094pt x 325.96782pt>
+File: figures/eda_box_7.png Graphic file (type png)
+<use figures/eda_box_7.png>
+Package pdftex.def Info: figures/eda_box_7.png  used on input line 312.
+(pdftex.def)             Requested size: 278.83578pt x 168.86261pt.
+<figures/eda_hist_7.png, id=316, 530.73282pt x 322.20375pt>
+File: figures/eda_hist_7.png Graphic file (type png)
+<use figures/eda_hist_7.png>
+Package pdftex.def Info: figures/eda_hist_7.png  used on input line 318.
+(pdftex.def)             Requested size: 278.83578pt x 169.28241pt.
+ [18 <./figures/eda_box_7.png> <./figures/eda_hist_7.png>]
+<figures/eda_box_8.png, id=325, 536.0025pt x 323.70938pt>
+File: figures/eda_box_8.png Graphic file (type png)
+<use figures/eda_box_8.png>
+Package pdftex.def Info: figures/eda_box_8.png  used on input line 347.
+(pdftex.def)             Requested size: 278.83578pt x 168.39406pt.
+ [19 <./figures/eda_box_8.png>]
+<figures/eda_hist_8.png, id=334, 536.0025pt x 328.97906pt>
+File: figures/eda_hist_8.png Graphic file (type png)
+<use figures/eda_hist_8.png>
+Package pdftex.def Info: figures/eda_hist_8.png  used on input line 354.
+(pdftex.def)             Requested size: 278.83578pt x 171.13535pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 360--361
+
+ []
 
 
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 148.
+Underfull \hbox (badness 10000) in paragraph at lines 366--367
 
-[10]
+ []
 
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 174.
+[20 <./figures/eda_hist_8.png>]
+<figures/eda_box_9.png, id=342, 539.01375pt x 331.2375pt>
+File: figures/eda_box_9.png Graphic file (type png)
+<use figures/eda_box_9.png>
+Package pdftex.def Info: figures/eda_box_9.png  used on input line 391.
+(pdftex.def)             Requested size: 278.83578pt x 171.35493pt.
+<figures/eda_hist_9.png, id=343, 526.96875pt x 332.74312pt>
+File: figures/eda_hist_9.png Graphic file (type png)
+<use figures/eda_hist_9.png>
+Package pdftex.def Info: figures/eda_hist_9.png  used on input line 397.
+(pdftex.def)             Requested size: 278.83578pt x 176.07376pt.
 
+Underfull \hbox (badness 10000) in paragraph at lines 402--403
 
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 199.
+ []
 
-[11]
+[21 <./figures/eda_box_9.png> <./figures/eda_hist_9.png>]
+<figures/truncado.png, id=352, 544.28343pt x 316.93407pt>
+File: figures/truncado.png Graphic file (type png)
+<use figures/truncado.png>
+Package pdftex.def Info: figures/truncado.png  used on input line 408.
+(pdftex.def)             Requested size: 278.83578pt x 162.36447pt.
+<figures/post-truncado.png, id=353, 546.54187pt x 319.94531pt>
+File: figures/post-truncado.png Graphic file (type png)
+<use figures/post-truncado.png>
+Package pdftex.def Info: figures/post-truncado.png  used on input line 417.
+(pdftex.def)             Requested size: 278.83578pt x 163.22852pt.
+ [22 <./figures/truncado.png> <./figures/post-truncado.png>]
+<figures/out_1.png, id=362, 529.98pt x 325.215pt>
+File: figures/out_1.png Graphic file (type png)
+<use figures/out_1.png>
+Package pdftex.def Info: figures/out_1.png  used on input line 433.
+(pdftex.def)             Requested size: 199.1693pt x 122.21832pt.
+<figures/out_2.png, id=363, 527.72156pt x 320.69812pt>
+File: figures/out_2.png Graphic file (type png)
+<use figures/out_2.png>
+Package pdftex.def Info: figures/out_2.png  used on input line 438.
+(pdftex.def)             Requested size: 199.1693pt x 121.03465pt.
+<figures/out_3.png, id=364, 526.21594pt x 324.46219pt>
+File: figures/out_3.png Graphic file (type png)
+<use figures/out_3.png>
+Package pdftex.def Info: figures/out_3.png  used on input line 446.
+(pdftex.def)             Requested size: 199.1693pt x 122.80676pt.
+<figures/out_4.png, id=365, 539.76656pt x 330.48468pt>
+File: figures/out_4.png Graphic file (type png)
+<use figures/out_4.png>
+Package pdftex.def Info: figures/out_4.png  used on input line 451.
+(pdftex.def)             Requested size: 199.1693pt x 121.94458pt.
+<figures/out_5.png, id=366, 539.01375pt x 333.49594pt>
+File: figures/out_5.png Graphic file (type png)
+<use figures/out_5.png>
+Package pdftex.def Info: figures/out_5.png  used on input line 459.
+(pdftex.def)             Requested size: 199.1693pt x 123.22871pt.
+ [23 <./figures/out_1.png> <./figures/out_2.png> <./figures/out_3.png> <./figur
+es/out_4.png> <./figures/out_5.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 479--480
 
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 223.
+ []
 
+<figures/corre_1.png, id=378, 409.53pt x 336.50719pt>
+File: figures/corre_1.png Graphic file (type png)
+<use figures/corre_1.png>
+Package pdftex.def Info: figures/corre_1.png  used on input line 485.
+(pdftex.def)             Requested size: 278.83578pt x 229.12993pt.
+[24 <./figures/corre_1.png>]
+<figures/hipo_1.png, id=385, 517.935pt x 333.49594pt>
+File: figures/hipo_1.png Graphic file (type png)
+<use figures/hipo_1.png>
+Package pdftex.def Info: figures/hipo_1.png  used on input line 503.
+(pdftex.def)             Requested size: 278.83578pt x 179.54572pt.
+<figures/hipo_2.png, id=386, 521.69907pt x 330.48468pt>
+File: figures/hipo_2.png Graphic file (type png)
+<use figures/hipo_2.png>
+Package pdftex.def Info: figures/hipo_2.png  used on input line 512.
+(pdftex.def)             Requested size: 278.83578pt x 176.63863pt.
+ [25 <./figures/hipo_1.png> <./figures/hipo_2.png>]
+<figures/hipo_3.png, id=396, 520.94624pt x 326.72063pt>
+File: figures/hipo_3.png Graphic file (type png)
+<use figures/hipo_3.png>
+Package pdftex.def Info: figures/hipo_3.png  used on input line 531.
+(pdftex.def)             Requested size: 199.1693pt x 124.91289pt.
+<figures/hipo_4.png, id=397, 532.99126pt x 338.76563pt>
+File: figures/hipo_4.png Graphic file (type png)
+<use figures/hipo_4.png>
+Package pdftex.def Info: figures/hipo_4.png  used on input line 536.
+(pdftex.def)             Requested size: 199.1693pt x 126.58707pt.
 
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 247.
+Underfull \hbox (badness 10000) in paragraph at lines 542--543
 
-[12]
+ []
 
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 279.
+[26 <./figures/hipo_3.png> <./figures/hipo_4.png>]
+<figures/hipo_5.png, id=405, 544.28343pt x 327.47343pt>
+File: figures/hipo_5.png Graphic file (type png)
+<use figures/hipo_5.png>
+Package pdftex.def Info: figures/hipo_5.png  used on input line 555.
+(pdftex.def)             Requested size: 278.83578pt x 167.76376pt.
+ [27 <./figures/hipo_5.png>]
+<figures/hipo_6.png, id=412, 526.21594pt x 330.48468pt>
+File: figures/hipo_6.png Graphic file (type png)
+<use figures/hipo_6.png>
+Package pdftex.def Info: figures/hipo_6.png  used on input line 571.
+(pdftex.def)             Requested size: 199.1693pt x 125.08624pt.
+<figures/hipo_7.png, id=413, 527.72156pt x 325.215pt>
+File: figures/hipo_7.png Graphic file (type png)
+<use figures/hipo_7.png>
+Package pdftex.def Info: figures/hipo_7.png  used on input line 576.
+(pdftex.def)             Requested size: 199.1693pt x 122.73938pt.
 
-[13] [14] [15]) [16] (sections/03-bupa.tex
+Underfull \hbox (badness 10000) in paragraph at lines 584--585
+
+ []
+
+) [28 <./figures/hipo_6.png> <./figures/hipo_7.png>] (sections/03-bupa.tex
 Cap\'{\i }tulo 3.
-) [17
 
-] (sections/04-regresion.tex) (sections/05-clasificacion.tex) (main.bbl
-[18
+Underfull \hbox (badness 10000) in paragraph at lines 4--5
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 6--7
+
+ []
+
+[29
 
 ]
+Underfull \hbox (badness 10000) in paragraph at lines 40--41
 
-LaTeX Warning: Empty `thebibliography' environment on input line 3.
+ []
 
-) [19] (main.aux
+[30]
+<figures/box_1.png, id=431, 535.2497pt x 323.70938pt>
+File: figures/box_1.png Graphic file (type png)
+<use figures/box_1.png>
+Package pdftex.def Info: figures/box_1.png  used on input line 76.
+(pdftex.def)             Requested size: 278.83578pt x 168.64102pt.
+<figures/hist_1.png, id=432, 539.01375pt x 322.20375pt>
+File: figures/hist_1.png Graphic file (type png)
+<use figures/hist_1.png>
+Package pdftex.def Info: figures/hist_1.png  used on input line 83.
+(pdftex.def)             Requested size: 278.83578pt x 166.68161pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 89--90
+
+ []
+
+[31 <./figures/box_1.png>] [32 <./figures/hist_1.png>]
+<figures/box_2.png, id=448, 538.26094pt x 327.47343pt>
+File: figures/box_2.png Graphic file (type png)
+<use figures/box_2.png>
+Package pdftex.def Info: figures/box_2.png  used on input line 115.
+(pdftex.def)             Requested size: 278.83578pt x 169.64258pt.
+<figures/hist_2.png, id=449, 534.49687pt x 322.20375pt>
+File: figures/hist_2.png Graphic file (type png)
+<use figures/hist_2.png>
+Package pdftex.def Info: figures/hist_2.png  used on input line 122.
+(pdftex.def)             Requested size: 278.83578pt x 168.09264pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 127--128
+
+ []
+
+[33 <./figures/box_2.png> <./figures/hist_2.png>]
+<figures/box_3.png, id=458, 536.75531pt x 331.2375pt>
+File: figures/box_3.png Graphic file (type png)
+<use figures/box_3.png>
+Package pdftex.def Info: figures/box_3.png  used on input line 151.
+(pdftex.def)             Requested size: 278.83578pt x 172.07263pt.
+ [34 <./figures/box_3.png>]
+<figures/hist_3.png, id=466, 535.2497pt x 324.46219pt>
+File: figures/hist_3.png Graphic file (type png)
+<use figures/hist_3.png>
+Package pdftex.def Info: figures/hist_3.png  used on input line 158.
+(pdftex.def)             Requested size: 278.83578pt x 169.0332pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 163--164
+
+ []
+
+[35 <./figures/hist_3.png>]
+<figures/box_4.png, id=474, 552.56438pt x 328.22626pt>
+File: figures/box_4.png Graphic file (type png)
+<use figures/box_4.png>
+Package pdftex.def Info: figures/box_4.png  used on input line 187.
+(pdftex.def)             Requested size: 278.83578pt x 165.62523pt.
+<figures/hist_4.png, id=475, 539.01375pt x 325.96782pt>
+File: figures/hist_4.png Graphic file (type png)
+<use figures/hist_4.png>
+Package pdftex.def Info: figures/hist_4.png  used on input line 194.
+(pdftex.def)             Requested size: 278.83578pt x 168.62883pt.
+ [36 <./figures/box_4.png> <./figures/hist_4.png>]
+<figures/box_5.png, id=484, 546.54187pt x 325.215pt>
+File: figures/box_5.png Graphic file (type png)
+<use figures/box_5.png>
+Package pdftex.def Info: figures/box_5.png  used on input line 223.
+(pdftex.def)             Requested size: 278.83578pt x 165.91699pt.
+
+[37 <./figures/box_5.png>]
+<figures/hist_5.png, id=493, 535.2497pt x 325.215pt>
+File: figures/hist_5.png Graphic file (type png)
+<use figures/hist_5.png>
+Package pdftex.def Info: figures/hist_5.png  used on input line 231.
+(pdftex.def)             Requested size: 278.83578pt x 169.4254pt.
+ [38 <./figures/hist_5.png>]
+<figures/box_6.png, id=501, 532.23843pt x 329.73187pt>
+File: figures/box_6.png Graphic file (type png)
+<use figures/box_6.png>
+Package pdftex.def Info: figures/box_6.png  used on input line 267.
+(pdftex.def)             Requested size: 278.83578pt x 172.74956pt.
+<figures/hist_6.png, id=502, 533.74406pt x 327.47343pt>
+File: figures/hist_6.png Graphic file (type png)
+<use figures/hist_6.png>
+Package pdftex.def Info: figures/hist_6.png  used on input line 274.
+(pdftex.def)             Requested size: 278.83578pt x 171.08167pt.
+LaTeX Font Info:    Trying to load font information for OML+cmr on input line 2
+85.
+
+(C:\Users\rafac\AppData\Local\Programs\MiKTeX\tex/latex/base\omlcmr.fd
+File: omlcmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <12> not available
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 285.
+
+[39 <./figures/box_6.png> <./figures/hist_6.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 298--299
+
+ []
+
+<figures/outlier_1.png, id=516, 532.23843pt x 332.74312pt>
+File: figures/outlier_1.png Graphic file (type png)
+<use figures/outlier_1.png>
+Package pdftex.def Info: figures/outlier_1.png  used on input line 307.
+(pdftex.def)             Requested size: 199.1693pt x 124.51434pt.
+<figures/outlier_2.png, id=517, 526.21594pt x 329.73187pt>
+File: figures/outlier_2.png Graphic file (type png)
+<use figures/outlier_2.png>
+Package pdftex.def Info: figures/outlier_2.png  used on input line 312.
+(pdftex.def)             Requested size: 199.1693pt x 124.8013pt.
+[40 <./figures/outlier_1.png> <./figures/outlier_2.png>]
+<figures/outlier_3.png, id=527, 531.48563pt x 331.99031pt>
+File: figures/outlier_3.png Graphic file (type png)
+<use figures/outlier_3.png>
+Package pdftex.def Info: figures/outlier_3.png  used on input line 325.
+(pdftex.def)             Requested size: 199.1693pt x 124.40993pt.
+<figures/outlier_4.png, id=528, 523.9575pt x 326.72063pt>
+File: figures/outlier_4.png Graphic file (type png)
+<use figures/outlier_4.png>
+Package pdftex.def Info: figures/outlier_4.png  used on input line 330.
+(pdftex.def)             Requested size: 199.1693pt x 124.195pt.
+<figures/outlier_5.png, id=529, 526.21594pt x 325.215pt>
+File: figures/outlier_5.png Graphic file (type png)
+<use figures/outlier_5.png>
+Package pdftex.def Info: figures/outlier_5.png  used on input line 338.
+(pdftex.def)             Requested size: 199.1693pt x 123.0917pt.
+<figures/outlier_6.png, id=530, 529.98pt x 329.73187pt>
+File: figures/outlier_6.png Graphic file (type png)
+<use figures/outlier_6.png>
+Package pdftex.def Info: figures/outlier_6.png  used on input line 343.
+(pdftex.def)             Requested size: 199.1693pt x 123.91579pt.
+<figures/outlier_7.png, id=531, 523.9575pt x 325.96782pt>
+File: figures/outlier_7.png Graphic file (type png)
+<use figures/outlier_7.png>
+Package pdftex.def Info: figures/outlier_7.png  used on input line 351.
+(pdftex.def)             Requested size: 199.1693pt x 123.90884pt.
+ [41 <./figures/outlier_3.png> <./figures/outlier_4.png> <./figures/outlier_5.p
+ng> <./figures/outlier_6.png> <./figures/outlier_7.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 370--371
+
+ []
+
+<figures/corr_2.png, id=542, 402.75468pt x 327.47343pt>
+File: figures/corr_2.png Graphic file (type png)
+<use figures/corr_2.png>
+Package pdftex.def Info: figures/corr_2.png  used on input line 376.
+(pdftex.def)             Requested size: 278.83578pt x 226.71643pt.
+[42 <./figures/corr_2.png>]
+<figures/tesis_1.png, id=549, 523.20468pt x 328.97906pt>
+File: figures/tesis_1.png Graphic file (type png)
+<use figures/tesis_1.png>
+Package pdftex.def Info: figures/tesis_1.png  used on input line 399.
+(pdftex.def)             Requested size: 199.1693pt x 125.22919pt.
+<figures/tesis_2.png, id=550, 530.73282pt x 327.47343pt>
+File: figures/tesis_2.png Graphic file (type png)
+<use figures/tesis_2.png>
+Package pdftex.def Info: figures/tesis_2.png  used on input line 404.
+(pdftex.def)             Requested size: 199.1693pt x 122.89218pt.
+<figures/tesis_3.png, id=551, 529.22719pt x 327.47343pt>
+File: figures/tesis_3.png Graphic file (type png)
+<use figures/tesis_3.png>
+Package pdftex.def Info: figures/tesis_3.png  used on input line 412.
+(pdftex.def)             Requested size: 199.1693pt x 123.24196pt.
+<figures/tesis_4.png, id=552, 527.72156pt x 332.74312pt>
+File: figures/tesis_4.png Graphic file (type png)
+<use figures/tesis_4.png>
+Package pdftex.def Info: figures/tesis_4.png  used on input line 417.
+(pdftex.def)             Requested size: 199.1693pt x 125.58055pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 429--430
+
+ []
+
+[43 <./figures/tesis_1.png> <./figures/tesis_2.png> <./figures/tesis_3.png> <./
+figures/tesis_4.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 436--437
+
+ []
+
+<figures/tesis_5.png, id=563, 533.74406pt x 326.72063pt>
+File: figures/tesis_5.png Graphic file (type png)
+<use figures/tesis_5.png>
+Package pdftex.def Info: figures/tesis_5.png  used on input line 442.
+(pdftex.def)             Requested size: 199.1693pt x 121.9167pt.
+<figures/tesis_6.png, id=564, 530.73282pt x 325.215pt>
+File: figures/tesis_6.png Graphic file (type png)
+<use figures/tesis_6.png>
+Package pdftex.def Info: figures/tesis_6.png  used on input line 447.
+(pdftex.def)             Requested size: 199.1693pt x 122.04465pt.
+<figures/tesis_7.png, id=565, 535.2497pt x 320.69812pt>
+File: figures/tesis_7.png Graphic file (type png)
+<use figures/tesis_7.png>
+Package pdftex.def Info: figures/tesis_7.png  used on input line 455.
+(pdftex.def)             Requested size: 199.1693pt x 119.33174pt.
+<figures/tesis_8.png, id=566, 539.76656pt x 338.76563pt>
+File: figures/tesis_8.png Graphic file (type png)
+<use figures/tesis_8.png>
+Package pdftex.def Info: figures/tesis_8.png  used on input line 460.
+(pdftex.def)             Requested size: 199.1693pt x 125.00015pt.
+<figures/tesis_9.png, id=567, 541.27219pt x 330.48468pt>
+File: figures/tesis_9.png Graphic file (type png)
+<use figures/tesis_9.png>
+Package pdftex.def Info: figures/tesis_9.png  used on input line 468.
+(pdftex.def)             Requested size: 199.1693pt x 121.60672pt.
+<figures/tesis_10.png, id=568, 538.26094pt x 325.96782pt>
+File: figures/tesis_10.png Graphic file (type png)
+<use figures/tesis_10.png>
+Package pdftex.def Info: figures/tesis_10.png  used on input line 473.
+(pdftex.def)             Requested size: 199.1693pt x 120.61615pt.
+[44 <./figures/tesis_5.png> <./figures/tesis_6.png> <./figures/tesis_7.png> <./
+figures/tesis_8.png> <./figures/tesis_9.png> <./figures/tesis_10.png>])
+(sections/04-regresion.tex [45] [46
+
+]
+Cap\'{\i }tulo 4.
+
+Underfull \hbox (badness 10000) in paragraph at lines 4--5
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 13--14
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 15--16
+
+ []
+
+
+Overfull \hbox (79.37804pt too wide) in paragraph at lines 19--30
+[][] 
+ []
+
+[47]
+<figures/regre_1.png, id=593, 529.98pt x 301.8778pt>
+File: figures/regre_1.png Graphic file (type png)
+<use figures/regre_1.png>
+Package pdftex.def Info: figures/regre_1.png  used on input line 38.
+(pdftex.def)             Requested size: 199.1693pt x 113.44803pt.
+<figures/regre_2.png, id=594, 526.21594pt x 289.83281pt>
+File: figures/regre_2.png Graphic file (type png)
+<use figures/regre_2.png>
+Package pdftex.def Info: figures/regre_2.png  used on input line 43.
+(pdftex.def)             Requested size: 199.1693pt x 109.69978pt.
+<figures/regre_3.png, id=595, 513.41812pt x 296.60812pt>
+File: figures/regre_3.png Graphic file (type png)
+<use figures/regre_3.png>
+Package pdftex.def Info: figures/regre_3.png  used on input line 51.
+(pdftex.def)             Requested size: 199.1693pt x 115.06117pt.
+<figures/regre_4.png, id=596, 524.71031pt x 295.1025pt>
+File: figures/regre_4.png Graphic file (type png)
+<use figures/regre_4.png>
+Package pdftex.def Info: figures/regre_4.png  used on input line 56.
+(pdftex.def)             Requested size: 199.1693pt x 112.01402pt.
+<figures/regre_5.png, id=597, 513.41812pt x 293.59688pt>
+File: figures/regre_5.png Graphic file (type png)
+<use figures/regre_5.png>
+Package pdftex.def Info: figures/regre_5.png  used on input line 64.
+(pdftex.def)             Requested size: 199.1693pt x 113.89304pt.
+<figures/regre_6.png, id=598, 528.47438pt x 295.85532pt>
+File: figures/regre_6.png Graphic file (type png)
+<use figures/regre_6.png>
+Package pdftex.def Info: figures/regre_6.png  used on input line 69.
+(pdftex.def)             Requested size: 199.1693pt x 111.50073pt.
+<figures/regre_7.png, id=599, 539.01375pt x 295.85532pt>
+File: figures/regre_7.png Graphic file (type png)
+<use figures/regre_7.png>
+Package pdftex.def Info: figures/regre_7.png  used on input line 77.
+(pdftex.def)             Requested size: 199.1693pt x 109.32028pt.
+<figures/regre_8.png, id=600, 510.40688pt x 295.1025pt>
+File: figures/regre_8.png Graphic file (type png)
+<use figures/regre_8.png>
+Package pdftex.def Info: figures/regre_8.png  used on input line 82.
+(pdftex.def)             Requested size: 199.1693pt x 115.15704pt.
+ [48 <./figures/regre_1.png> <./figures/regre_2.png> <./figures/regre_3.png> <.
+/figures/regre_4.png> <./figures/regre_5.png> <./figures/regre_6.png> <./figure
+s/regre_7.png> <./figures/regre_8.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 96--97
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 98--99
+
+ []
+
+
+Overfull \hbox (60.12129pt too wide) in paragraph at lines 102--110
+[][] 
+ []
+
+
+Overfull \hbox (90.14044pt too wide) in paragraph at lines 115--123
+[][] 
+ []
+
+[49]
+Underfull \hbox (badness 10000) in paragraph at lines 133--134
+
+ []
+
+<figures/fit_multi1.png, id=621, 383.93437pt x 282.30469pt>
+File: figures/fit_multi1.png Graphic file (type png)
+<use figures/fit_multi1.png>
+Package pdftex.def Info: figures/fit_multi1.png  used on input line 138.
+(pdftex.def)             Requested size: 278.83578pt x 205.03825pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 153--154
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 155--156
+
+ []
+
+[50 <./figures/fit_multi1.png>]
+<figures/fit_multi_2.png, id=629, 425.33907pt x 271.76532pt>
+File: figures/fit_multi_2.png Graphic file (type png)
+<use figures/fit_multi_2.png>
+Package pdftex.def Info: figures/fit_multi_2.png  used on input line 160.
+(pdftex.def)             Requested size: 278.83578pt x 178.16724pt.
+<figures/fit_multi_3.png, id=630, 428.35031pt x 272.51813pt>
+File: figures/fit_multi_3.png Graphic file (type png)
+<use figures/fit_multi_3.png>
+Package pdftex.def Info: figures/fit_multi_3.png  used on input line 178.
+(pdftex.def)             Requested size: 278.83578pt x 177.39665pt.
+ [51 <./figures/fit_multi_2.png> <./figures/fit_multi_3.png>]
+<figures/fit_multi_4.png, id=640, 444.91219pt x 277.78781pt>
+File: figures/fit_multi_4.png Graphic file (type png)
+<use figures/fit_multi_4.png>
+Package pdftex.def Info: figures/fit_multi_4.png  used on input line 196.
+(pdftex.def)             Requested size: 278.83578pt x 174.0959pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 211--213
+
+ []
+
+[52 <./figures/fit_multi_4.png>]
+<figures/fit_multi_5.png, id=649, 487.8225pt x 320.69812pt>
+File: figures/fit_multi_5.png Graphic file (type png)
+<use figures/fit_multi_5.png>
+Package pdftex.def Info: figures/fit_multi_5.png  used on input line 218.
+(pdftex.def)             Requested size: 278.83578pt x 183.30873pt.
+<figures/fit_multi_6.png, id=650, 469.00218pt x 317.68687pt>
+File: figures/fit_multi_6.png Graphic file (type png)
+<use figures/fit_multi_6.png>
+Package pdftex.def Info: figures/fit_multi_6.png  used on input line 235.
+(pdftex.def)             Requested size: 278.83578pt x 188.87332pt.
+<figures/fit_multi_7.png, id=651, 493.845pt x 368.1253pt>
+File: figures/fit_multi_7.png Graphic file (type png)
+<use figures/fit_multi_7.png>
+Package pdftex.def Info: figures/fit_multi_7.png  used on input line 252.
+(pdftex.def)             Requested size: 278.83578pt x 207.85075pt.
+ [53 <./figures/fit_multi_5.png> <./figures/fit_multi_6.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 265--266
+
+ []
+
+[54 <./figures/fit_multi_7.png>]
+<figures/fit_multi_8.png, id=669, 451.6875pt x 342.5297pt>
+File: figures/fit_multi_8.png Graphic file (type png)
+<use figures/fit_multi_8.png>
+Package pdftex.def Info: figures/fit_multi_8.png  used on input line 271.
+(pdftex.def)             Requested size: 278.83578pt x 211.462pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 284--285
+
+ []
+
+<figures/fit_multi_9.png, id=670, 481.8pt x 344.78813pt>
+File: figures/fit_multi_9.png Graphic file (type png)
+<use figures/fit_multi_9.png>
+Package pdftex.def Info: figures/fit_multi_9.png  used on input line 289.
+(pdftex.def)             Requested size: 278.83578pt x 199.54584pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<figures/fit_multi_10.png, id=671, 416.30531pt x 331.2375pt>
+File: figures/fit_multi_10.png Graphic file (type png)
+<use figures/fit_multi_10.png>
+Package pdftex.def Info: figures/fit_multi_10.png  used on input line 305.
+(pdftex.def)             Requested size: 278.83578pt x 221.86731pt.
+[55 <./figures/fit_multi_8.png> <./figures/fit_multi_9.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 318--319
+
+ []
+
+[56 <./figures/fit_multi_10.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 331--332
+
+ []
+
+
+Overfull \hbox (61.06586pt too wide) in paragraph at lines 336--345
+[][] 
+ []
+
+<figures/media.png, id=691, 397.485pt x 22.58438pt>
+File: figures/media.png Graphic file (type png)
+<use figures/media.png>
+Package pdftex.def Info: figures/media.png  used on input line 351.
+(pdftex.def)             Requested size: 478.00508pt x 27.16035pt.
+
+Overfull \hbox (79.66649pt too wide) in paragraph at lines 351--352
+ [][] 
+ []
+
+[57 <./figures/media.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 361--363
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 377--378
+
+ []
+
+[58]) (sections/05-clasificacion.tex [59] [60
+
+]
+Cap\'{\i }tulo 5.
+
+Underfull \hbox (badness 10000) in paragraph at lines 4--6
+
+ []
+
+[61]
+Overfull \hbox (28.45793pt too wide) in paragraph at lines 21--36
+[][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 43--44
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 45--46
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 60--61
+
+ []
+
+[62]
+Overfull \hbox (28.46478pt too wide) in paragraph at lines 68--74
+[][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 101--102
+
+ []
+
+[63]
+<figures/corr_0.png, id=733, 371.13657pt x 334.24875pt>
+File: figures/corr_0.png Graphic file (type png)
+<use figures/corr_0.png>
+Package pdftex.def Info: figures/corr_0.png  used on input line 109.
+(pdftex.def)             Requested size: 199.1693pt x 179.37468pt.
+<figures/corr_1.png, id=734, 356.83313pt x 332.74312pt>
+File: figures/corr_1.png Graphic file (type png)
+<use figures/corr_1.png>
+Package pdftex.def Info: figures/corr_1.png  used on input line 114.
+(pdftex.def)             Requested size: 199.1693pt x 185.72052pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 122--123
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 124--125
+
+ []
+
+
+Overfull \hbox (28.46478pt too wide) in paragraph at lines 128--134
+[][] 
+ []
+
+[64 <./figures/corr_0.png> <./figures/corr_1.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 151--152
+
+ []
+
+) (sections/06-apendice-A.tex [65] [66
+
+]
+Cap\'{\i }tulo 6.
+(C:\Users\rafac\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
+File: lstlang1.sty 2020/03/24 1.8d listings language file
+)
+(C:\Users\rafac\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang2.sty
+File: lstlang2.sty 2020/03/24 1.8d listings language file
+)
+(C:\Users\rafac\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang3.sty
+File: lstlang3.sty 2020/03/24 1.8d listings language file
+)
+LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <10> not available
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 52.
+
+[67]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [68]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [69]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [70])
+[71] (sections/06-apendice-B.tex [72]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [73]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [74])
+[75] (sections/06-apendice-C.tex
+LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 1
+4.
+
+(C:\Users\rafac\AppData\Local\Programs\MiKTeX\tex/latex/base\omscmr.fd
+File: omscmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 14.
+
+[76]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [77]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [78]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [79]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [80]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [81])
+[82] (sections/06-apendice-D.tex [83]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [84]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [85]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [86]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [87])
+[88] (main.bbl
+Underfull \hbox (badness 10000) in paragraph at lines 7--9
+[]\OT1/cmr/m/n/12 ``Nomograms for Vi-sua-li-zing Li-near Sup-port Vec-tor Ma-ch
+i-nes.''
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 7--9
+[]$\OT1/cmtt/m/n/12 https : / / www . researchgate . net / publication / 335500
+53 _ Nomograms _
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 19--21
+[]\OT1/cmr/m/n/12 ``Descripci^^Son del con-jun-to de da-tos de vi-vien-das de C
+a-li-for-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 19--21
+\OT1/cmr/m/n/12 nia.'' []$\OT1/cmtt/m/n/12 https : / / developers . google . co
+m / machine -[] learning / crash -[]
+ []
+
+)
+Underfull \hbox (badness 10000) in paragraph at lines 23--74
+[]\OT1/cmr/m/n/12 ``Liver Di-sor-ders Da-ta Set.'' []$\OT1/cmtt/m/n/12 https : 
+/ / archive . ics . uci . edu / ml /
+ []
+
+
+! LaTeX Error: \begin{thebibliography} on input line 1 ended by \end{document}.
+
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.80 \end{document}
+                   
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+[89
+
+] (main.aux
 LaTeX Info: Redefining \. on input line 22.
 LaTeX Info: Redefining \% on input line 22.
 )
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: F18273244B9B15470C6E7A1E6F39EDFA;3040.
+(rerunfilecheck)             Checksum: FA37C54E184981EBB3A8A0B29D98B706;8962.
  )
 (\end occurred inside a group at level 1)
 
-### simple group (level 1) entered at line 37 ({)
+### semi simple group (level 1) entered at line 1 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 14097 strings out of 475385
- 228966 string characters out of 2776906
- 589511 words of memory out of 3000000
- 35210 multiletter control sequences out of 15000+600000
- 477314 words of font info for 57 fonts, out of 8000000 for 9000
+ 18880 strings out of 475385
+ 302791 string characters out of 2776906
+ 1337441 words of memory out of 3000000
+ 38748 multiletter control sequences out of 15000+600000
+ 479817 words of font info for 68 fonts, out of 8000000 for 9000
  1142 hyphenation exceptions out of 8191
- 72i,11n,77p,559b,569s stack positions out of 10000i,1000n,20000p,200000b,80000s
+ 72i,11n,77p,700b,2698s stack positions out of 10000i,1000n,20000p,200000b,80000s
  <C:\Users\rafac\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/
-ec/dpi600\tcrm1200.pk><C:/Users/rafac/AppData/Local/Programs/MiKTeX/fonts/type1
-/public/amsfonts/cm/cmbx12.pfb><C:/Users/rafac/AppData/Local/Programs/MiKTeX/fo
-nts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/rafac/AppData/Local/Programs
-/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/rafac/AppData/Local/
-Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on main.pdf (19 pages, 227777 bytes).
+ec/dpi600\tcrm1000.pk> <C:\Users\rafac\AppData\Local\MiKTeX\fonts/pk/ljfour/jkn
+appen/ec/dpi600\tcrm1200.pk><C:/Users/rafac/AppData/Local/Programs/MiKTeX/fonts
+/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/rafac/AppData/Local/Programs/MiK
+TeX/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/rafac/AppData/Local/Pr
+ograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/rafac/AppData
+/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/rafa
+c/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Us
+ers/rafac/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pf
+b><C:/Users/rafac/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
+cmr8.pfb><C:/Users/rafac/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfo
+nts/cm/cmsy10.pfb><C:/Users/rafac/AppData/Local/Programs/MiKTeX/fonts/type1/pub
+lic/amsfonts/cm/cmti12.pfb><C:/Users/rafac/AppData/Local/Programs/MiKTeX/fonts/
+type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on main.pdf (89 pages, 2059984 bytes).
 PDF statistics:
- 201 PDF objects out of 1000 (max. 8388607)
- 44 named destinations out of 1000 (max. 500000)
- 107 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 2083 PDF objects out of 2487 (max. 8388607)
+ 1162 named destinations out of 1200 (max. 500000)
+ 714 words of extra memory for PDF output out of 10000 (max. 10000000)
 

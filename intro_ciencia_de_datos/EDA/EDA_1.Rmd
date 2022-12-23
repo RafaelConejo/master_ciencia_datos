@@ -205,7 +205,7 @@ negative_skew
 kurt <- apply(num_car, 2, kurtosis)
 format(kurt, scientific = FALSE)
 
-
+# Todas poseen un valor medianamente cercano a 0, por lo que se puede concluir en que los valores están medianamente concentrados 
 ```
 ```{r}
 ggplot(num_car, aes(x=Sales)) +
@@ -337,11 +337,13 @@ virginica <- cbind(virginica, virginica_sepal_w)
 
 4-	Uno los tres datasets, uno por especie
 ```{r}
-
+new_iris <- full_join(versicolor, setosa, by='Species')
+new_iris <- full_join(new_iris, virginica, by='Species')
 ```
 
 5-	Intenta crear una tabla con esta forma. Puedes usar la función pivot_longer() de tidyr. La explicaremos el tercer dia
 ```{r}
+
 
 ```
 6-	Genera el gráfico
@@ -360,10 +362,7 @@ boxplot(iris$Petal.Length ~iris$Species)
 pairs(iris[, 1:4])
 ```
 
-* Crea una nueva columna llamada proporción que es el ratio entre Sepal.Length y Sepal.Width. Podeis hacerlo en R base o usando el paquete dplyr. Los que no lo conozcan tienen información al final del documento
-```{r}
 
-```
 
 
 # Ejemplo, swiss dataset

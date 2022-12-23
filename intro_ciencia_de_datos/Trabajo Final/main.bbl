@@ -1,3 +1,24 @@
-\begin{thebibliography}{}
+\begin{thebibliography}{1}
 
-\end{thebibliography}
+\bibitem{dataMining}
+J.~Han, M.~Kamber, and J.~Pei, {\em Data Mining : Concepts and Techniques}.
+
+\bibitem{1}
+``Nomograms for Visualizing Linear Support Vector Machines.''
+\url{https://www.researchgate.net/publication/33550053_Nomograms_for_Visualizing_Linear_Support_Vector_Machines}
+
+\bibitem{2}
+``A Study of Support Vector Machine Algorithm for Liver Disease Diagnosis.''
+\url{http://article.sapub.org/10.5923.j.ajis.20140401.02.html}
+
+\bibitem{3}
+``The California housing dataset.''
+\url{https://inria.github.io/scikit-learn-mooc/python_scripts/datasets_california_housing.html}
+
+\bibitem{4}
+``Descripción del conjunto de datos de viviendas de California.''
+\url{https://developers.google.com/machine-learning/crash-course/california-housing-data-description}
+
+\bibitem{5}
+``Liver Disorders Data Set.''
+\url{https://archive.ics.uci.edu/ml/datasets/liver+disorders}
